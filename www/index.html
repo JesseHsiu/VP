@@ -33,107 +33,167 @@
         
     </head>
     <body>
-        <h1 id="title" class="page-header"><i class="fa fa-graduation-cap"></i>兒童視-動-整合測驗</h1>
-        <!-- <div id="title" class="ui-title"> 
-            <h1><i class="fa fa-graduation-cap"></i>兒童視-動-整合測驗</h1> 
-        </div>  -->
-        <div class="slider">
-            <ul class="slider__wrapper" >
-                <li class="slider__item" style="background-color: #97CBFF;">
-                    <p class="text_inSlider">歡迎</p>
-                </li>
-                <li class="slider__item" style="background-color: #ACD6FF;">
-                    <p class="text_inSlider">這個測驗會評估到您的視知覺、動作協調、視動整合的能力，大約會花45~60分鐘。</p>
-                </li>
-                <li class="slider__item" style="background-color: #C4E1FF;">
-                    <p class="text_inSlider">請確認您是再一個安靜、燈光適宜不被干擾的環境，且在一個舒適的坐姿下。</p>
-                </li>
-                <li class="slider__item" style="background-color: #D2E9FF;">
-                    <p class="text_inSlider">準備好請按開始</p>
-                </li>
-            </ul>
+        <div data-role="page" id="mainpage">
+            <div data-role="header">
+                <h1 style="font-size:50px; margin:0px;"><i class="fa fa-graduation-cap"></i>兒童視-動-整合測驗</h1>
+            </div>
+            <div class="slider">
+                <ul class="slider__wrapper">
+                    <li class="slider__item" style="background-color: #97CBFF;">
+                        <p class="text_inSlider">歡迎</p>
+                    </li>
+                    <li class="slider__item" style="background-color: #ACD6FF;">
+                        <p class="text_inSlider">這個測驗會評估到您的視知覺、動作協調、視動整合的能力，大約會花45~60分鐘。</p>
+                    </li>
+                    <li class="slider__item" style="background-color: #C4E1FF;">
+                        <p class="text_inSlider">請確認您是再一個安靜、燈光適宜不被干擾的環境，且在一個舒適的坐姿下。</p>
+                    </li>
+                    <li class="slider__item" style="background-color: #D2E9FF;">
+                        <p class="text_inSlider">準備好請按開始</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- <button id class="btn btn-default" style="height=40px;">開始</button>   -->  
+            <!-- <p style="text-align: center;"><a href="index.html" data-role="button" data-inline="true" data-theme="e">開始</a></p>   -->
+                <p style="text-align: center;"><a id="btn_start" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a ui-disabled" data-transition="pop">開始</a></p>
+
+            
+
+                <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+                    <form>
+                        <div style="padding:0px 50px;">
+                            <h2 style="text-align: center;">基本資料</h2>
+                            <label for="text-basic">Code:</label>
+                            <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="">
+                            <label for="text-basic">性別:</label>
+                            <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
+                                <option>點擊選取性別</option>
+                                <option value="male">男</option>
+                                <option value="female">女</option>
+                            </select>
+                            <label for="text-basic">生日:</label>
+                            <input type="date" name="date" id="birthday" value="">
+                            <label for="text-basic">年級:</label>
+                            <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
+                                <option>點擊選取年級</option>
+                                <optgroup label="幼稚園">
+                                    <option value="小">小</option>
+                                    <option value="中">中</option>
+                                    <option value="大">大</option>
+                                </optgroup>
+                                <optgroup label="小學">
+                                    <option value="s1">一年級</option>
+                                    <option value="s1">二年級</option>
+                                    <option value="s1">三年級</option>
+                                    <option value="s1">四年級</option>
+                                    <option value="s1">五年級</option>
+                                    <option value="s1">六年級</option>
+                                </optgroup>
+                            </select>
+
+                            <label for="text-basic">居住地點:</label>
+                            <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
+                                <option>點擊選取縣市</option>
+                                <option value="基隆市" >基隆市</option>
+                                <option value="臺北市" >臺北市</option>
+                                <option value="新北市" >新北市</option>
+                                <option value="桃園縣" >桃園縣</option>
+                                <option value="新竹市" >新竹市</option>
+                                <option value="新竹縣" >新竹縣</option>
+                                <option value="苗栗縣" >苗栗縣</option>
+                                <option value="臺中市" >臺中市</option>
+                                <option value="彰化縣" >彰化縣</option>
+                                <option value="南投縣" >南投縣</option>
+                                <option value="雲林縣" >雲林縣</option>
+                                <option value="嘉義市" >嘉義市</option>
+                                <option value="嘉義縣" >嘉義縣</option>
+                                <option value="臺南市" >臺南市</option>
+                                <option value="高雄市" >高雄市</option>
+                                <option value="屏東縣" >屏東縣</option>
+                                <option value="臺東縣" >臺東縣</option>
+                                <option value="花蓮縣" >花蓮縣</option>
+                                <option value="宜蘭縣" >宜蘭縣</option>
+                                <option value="澎湖縣" >澎湖縣</option>
+                                <option value="金門縣" >金門縣</option>
+                                <option value="連江縣" >連江縣</option>
+                            </select>
+
+                            <p style="text-align: center;"><a id="confirm_btn" href="#userpanel" data-rel="page" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">完成</a></p>
+
+
+                        </div>
+                    </form>
+                </div>
+        </div>
+
+
+        <div data-role="page" id="userpanel">
+            <div data-role="header">
+                <a href="#mainpage" data-transition="slidedown" class="ui-btn-left ui-btn ui-btn-inline ui-corner-all ui-btn-icon-left ui-icon-carat-l">Back</a>
+
+                <h1 style="font-size:50px"><i class="fa fa-pencil-square-o"></i>請選擇測驗</h1>
+            </div>
+            <fieldset id="select" class="ui-grid-b ui-responsive">
+                <div class="ui-block-a"><a id="link1" href="#VP_Main" class="ui-btn ui-corner-all" data-transition="slidefade">視知覺</a></div>
+                <div class="ui-block-b"><a id="link2" href="#" class="ui-btn ui-corner-all">動作協調</a></div>     
+                <div class="ui-block-c"><a id="link3" href="#" class="ui-btn ui-corner-all">視動整合</a></div>
+            </fieldset>
+        </div>
+
+        <div data-role="page" id="VP_Main">
+            <div data-role="header">            
+                <h1 style="font-size:50px; margin:0px;">視知覺測驗</h1>
+            </div>
+            <div class="page_content" data-role="content">
+                <div class="slider">
+                    <ul class="slider__wrapper">
+                        <li class="slider__item" style="background-color: #97CBFF;">
+                            <p class="text_inSlider">這個測驗會請您使用筆在螢幕上選擇正確的答案。</p>
+                        </li>
+                        <li class="slider__item" style="background-color: #ACD6FF;">
+                            <p class="text_inSlider">總共會有七個小部分，每一個部分的規則不一樣。</p>
+                        </li>
+                        <li class="slider__item" style="background-color: #C4E1FF;">
+                            <p class="text_inSlider">如果在過程中有遇到任何問題，有感到身體不舒服（例：眼睛疲累）可以隨時提出。</p>
+                        </li>
+                        <li class="slider__item" style="background-color: #D2E9FF;">
+                            <p class="text_inSlider">準備好請按開始。</p>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
         </div>
         
-        <!-- <button id class="btn btn-default" style="height=40px;">開始</button>   -->  
-        <!-- <p style="text-align: center;"><a href="index.html" data-role="button" data-inline="true" data-theme="e">開始</a></p>   -->
-        <p style="text-align: center;"><a id="btn_start" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a ui-disabled" data-transition="pop">開始</a></p>
-
-
-        
-        <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
-            <form>
-                <div style="padding:0px 50px;">
-                    <h2 style="text-align: center;">基本資料</h2>
-                    <label for="text-basic">Code:</label>
-                    <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="">
-                    <label for="text-basic">性別:</label>
-                    <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
-                        <option>點擊選取性別</option>
-                        <option value="male">男</option>
-                        <option value="female">女</option>
-                    </select>
-                    <label for="text-basic">生日:</label>
-                    <input type="date" name="date" id="birthday" value="">
-                    <label for="text-basic">年級:</label>
-                    <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
-                        <option>點擊選取年級</option>
-                        <optgroup label="幼稚園">
-                            <option value="小">小</option>
-                            <option value="中">中</option>
-                            <option value="大">大</option>
-                        </optgroup>
-                        <optgroup label="小學">
-                            <option value="s1">一年級</option>
-                            <option value="s1">二年級</option>
-                            <option value="s1">三年級</option>
-                            <option value="s1">四年級</option>
-                            <option value="s1">五年級</option>
-                            <option value="s1">六年級</option>
-                        </optgroup>
-                    </select>
-
-                    <label for="text-basic">居住地點:</label>
-                    <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
-                        <option>點擊選取縣市</option>
-                        <option value="基隆市" >基隆市</option>
-                        <option value="臺北市" >臺北市</option>
-                        <option value="新北市" >新北市</option>
-                        <option value="桃園縣" >桃園縣</option>
-                        <option value="新竹市" >新竹市</option>
-                        <option value="新竹縣" >新竹縣</option>
-                        <option value="苗栗縣" >苗栗縣</option>
-                        <option value="臺中市" >臺中市</option>
-                        <option value="彰化縣" >彰化縣</option>
-                        <option value="南投縣" >南投縣</option>
-                        <option value="雲林縣" >雲林縣</option>
-                        <option value="嘉義市" >嘉義市</option>
-                        <option value="嘉義縣" >嘉義縣</option>
-                        <option value="臺南市" >臺南市</option>
-                        <option value="高雄市" >高雄市</option>
-                        <option value="屏東縣" >屏東縣</option>
-                        <option value="臺東縣" >臺東縣</option>
-                        <option value="花蓮縣" >花蓮縣</option>
-                        <option value="宜蘭縣" >宜蘭縣</option>
-                        <option value="澎湖縣" >澎湖縣</option>
-                        <option value="金門縣" >金門縣</option>
-                        <option value="連江縣" >連江縣</option>
-                    </select>
-
-                    <p style="text-align: center;"><a href="user_panel.html" data-rel="page" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">完成</a></p>
-
-
-                </div>
-            </form>
+        <div data-role="page" id="VP_1">
+            <div data-role="header">            
+                <h1>Page 1</h1>
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer">
+                <h1>Footer</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a data-role="button" href="#page2" data-transition="slide" id="add" data-rel="page">ADD</a>
+                        </li>
+                        <li>
+                            <a data-role="button" href="#page2" data-transition="slide" id="show" data-rel="page">SHOW</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
-        
 
-        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery.glide.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         
 
         <script type="text/javascript">
