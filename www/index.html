@@ -26,20 +26,30 @@
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/jquery.glide.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
     <title>Hello World</title>
 
 </head>
 
 <body>
+    <!-- login/start page -->
     <div data-role="page" id="mainpage">
         <div data-role="header">
             <h1 style="font-size:50px; margin:0px;"><i class="fa fa-graduation-cap"></i>兒童視-動-整合測驗</h1>
         </div>
-        <div class="slider">
+        <div class="slider" id="slider_Index">
             <ul class="slider__wrapper">
                 <li class="slider__item" style="background-color: #97CBFF;">
                     <p class="text_inSlider">歡迎</p>
@@ -139,30 +149,35 @@
             </form>
         </div>
     </div>
+    <!-- login/start page end-->
 
-
+    <!-- choose -->
     <div data-role="page" id="userpanel">
         <div data-role="header">
             <a href="#mainpage" data-transition="slidedown" class="ui-btn-left ui-btn ui-btn-inline ui-corner-all ui-btn-icon-left ui-icon-carat-l">Back</a>
 
             <h1 style="font-size:50px"><i class="fa fa-pencil-square-o"></i>請選擇測驗</h1>
         </div>
-        <fieldset id="select" class="ui-grid-b ui-responsive">
-            <div class="ui-block-a"><a id="link1" href="#VP_Main" class="ui-btn ui-corner-all" data-transition="slidefade">視知覺</a>
-            </div>
-            <div class="ui-block-b"><a id="link2" href="#" class="ui-btn ui-corner-all">動作協調</a>
-            </div>
-            <div class="ui-block-c"><a id="link3" href="#" class="ui-btn ui-corner-all">視動整合</a>
-            </div>
-        </fieldset>
+        <div data-role="content" class="page_content">
+            <fieldset class="ui-grid-b ui-responsive">
+                <div class="col-sm-4"><a href="#VP_Intro" class="ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">視知覺</p></a>
+                </div>
+                <div class="col-sm-4"><a href="#" class="ui-btn ui-corner-all"><p class="Choose_link">動作協調</p></a>
+                </div>
+                <div class="col-sm-4"><a href="#" class="ui-btn ui-corner-all"><p class="Choose_link">視動整合</p></a>
+                </div>
+            </fieldset>
+        </div>
     </div>
-
-    <div data-role="page" id="VP_Main">
+    <!-- choose end -->
+    
+    <!-- VP Intro -->
+    <div data-role="page" id="VP_Intro">
         <div data-role="header">
             <h1 style="font-size:50px; margin:0px;">視知覺測驗</h1>
         </div>
         <div class="page_content" data-role="content">
-            <div class="slider">
+            <div class="slider" id="slider_VP">
                 <ul class="slider__wrapper">
                     <li class="slider__item" style="background-color: #97CBFF;">
                         <p class="text_inSlider">這個測驗會請您使用筆在螢幕上選擇正確的答案。</p>
@@ -178,17 +193,46 @@
                     </li>
                 </ul>
             </div>
-
+            <p style="text-align: center;"><a id="VP_start_btn" href="#VP_Panel" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-disabled">完成</a>
+            </p>
 
         </div>
     </div>
-
-    <div data-role="page" id="VP_1">
+    <!-- VP Intro end -->
+    
+    <!-- VP Panel -->
+    <div data-role="page" id="VP_Panel">
         <div data-role="header">
-            <h1>Page 1</h1>
+            <a href="#userpanel" data-transition="slidedown" class="ui-btn-left ui-btn ui-btn-inline ui-corner-all ui-btn-icon-left ui-icon-carat-l">Back</a>
+            <h1 style="font-size:50px; margin:0px;">請選擇測驗</h1>
         </div>
-        <div data-role="content"></div>
-        <div data-role="footer">
+        <div class="container-fluid" data-role="content">
+            <!-- <fieldset id="select2" class="VP_select ui-grid-b ui-responsive"> -->
+            <div class="row" id="VP_1_row">
+                <div class="col-sm-3 col-sm-offset-2"><a href="#VP_1_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺區辨</p></a>
+                </div>
+                <div class="col-sm-3"><a href="#VP_2_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺記憶</p></a>
+                </div>
+                <div class="col-sm-3"><a href="#VP_3_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">空間概念</p></a>
+                </div>
+            </div>
+            <!-- </fieldset> -->
+            <!-- <fieldset id="select3" class="VP_select ui-grid-c ui-responsive"> -->
+            <div class="row">
+                <div class="col-sm-3"><a href="#VP_4_intro" class="ui-btn ui-corner-all "><p class="VP_Panel_link">形狀恆常</p></a>
+                </div>
+                <div class="col-sm-3"><a href="#VP_5_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺順序記憶</p></a>
+                </div>
+                <div class="col-sm-3"><a href="#VP_6_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">前景背景</p></a>
+                </div>
+                <div class="col-sm-3"><a href="#VP_7_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺完形</p></a>
+                </div>
+            </div>
+            <!-- </fieldset> -->
+        </div>
+        
+
+        <!-- <div data-role="header">
             <h1>Footer</h1>
             <div data-role="navbar">
                 <ul>
@@ -200,32 +244,137 @@
                     </li>
                 </ul>
             </div>
+        </div> -->
+    </div>
+    <!-- VP Panel end-->
+
+    <div data-role="page" id="VP_1_intro">
+        <p class="Main_tile_intro">請在下面選出跟上面一模一樣的圖形。</p>
+        <div class="row VP_1_intro_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="Q_img">
+            </div>
         </div>
+        
+
+        <div class="row VP_1_intro_Options">
+            <div class="col-sm-2 col-sm-offset-1">
+                <button id="1" class="Intro_option"><img id="1_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="2" class="Intro_option"><img id="2_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="3" class="Intro_option"><img id="3_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="4" class="Intro_option"><img id="4_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="5" class="Intro_option"><img id="5_img"></button>
+            </div>
+        </div>
+        <div id="VP_1_intro_wrong" class="alert alert-danger" role="alert"  style="display: none;">
+            <p><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><strong>錯誤</strong> 太可惜了！請重新選擇正確的符號！</p>
+        </div>
+        <div id="VP_1_intro_right" class="alert alert-success" role="alert" style="display: none;">
+            <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>正確</strong> 太棒了！你選擇對的符號！繼續這麼做！</p>
+        </div>
+
+        <p id="VP_1_intro_Next" style="text-align: center; display: none;"><a href="#VP_1" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a></p>
+        <script type="text/javascript" src="js/VP_intro.js"></script>
+    </div>
+    <div data-role="page" id="VP_1">
+        <div class="row VP_1_intro_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="Q_img">
+            </div>
+        </div>
+        
+
+        <div class="row VP_1_intro_Options">
+            <div class="col-sm-2 col-sm-offset-1">
+                <button id="1" class="Intro_option"><img id="1_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="2" class="Intro_option"><img id="2_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="3" class="Intro_option"><img id="3_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="4" class="Intro_option"><img id="4_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="5" class="Intro_option"><img id="5_img"></button>
+            </div>
+        </div>
+        <p id="VP_1_Next" style="text-align: center; display: none;"><a id="Confirm_btn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">下一題</a></p>
+        <script type="text/javascript" src="js/VP.js"></script>
     </div>
 
+    <div data-role="page" id="VP_2_intro">
+    </div>
+    <div data-role="page" id="VP_2">
+    </div>
 
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/jquery.glide.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
+    <div data-role="page" id="VP_3_intro">
+    </div>
+    <div data-role="page" id="VP_3">
+    </div>
+
+    <div data-role="page" id="VP_4_intro">
+    </div>
+    <div data-role="page" id="VP_4">
+    </div>
+
+    <div data-role="page" id="VP_5_intro">
+    </div>
+    <div data-role="page" id="VP_5">
+    </div>
+
+    <div data-role="page" id="VP_6_intro">
+    </div>
+    <div data-role="page" id="VP_6">
+    </div>
+
+    <div data-role="page" id="VP_7_intro">
+    </div>
+    <div data-role="page" id="VP_7">
+    </div>
+
+    
+    
 
 
     <script type="text/javascript">
-    var glide = $('.slider').glide({
-        autoplay: false,
-        circular: false,
-        arrowRightText: '',
-        arrowLeftText: '',
-        afterTransition: function() {
-            console.log("haha");
-            if (glide.current() == 4) {
-                console.log("true");
-                $('#btn_start').removeClass('ui-disabled');
-            } else {}
-        }
-    }).data('api_glide');
+        var glide = $('#slider_Index').glide({
+            autoplay: false,
+            circular: false,
+            arrowRightText: '',
+            arrowLeftText: '',
+            afterTransition: function() {
+                console.log("haha");
+                if (glide.current() == 4) {
+                    console.log("true");
+                    $('#btn_start').removeClass('ui-disabled');
+                } else {}
+            }
+        }).data('api_glide');
+
+        var glide2 = $('#slider_VP').glide({
+            autoplay: false,
+            circular: false,
+            arrowRightText: '',
+            arrowLeftText: '',
+            afterTransition: function() {
+                console.log("haha");
+                if (glide2.current() == 4) {
+                    console.log("true");
+                    $('#VP_start_btn').removeClass('ui-disabled');
+                } else {}
+            }
+        }).data('api_glide');
     </script>
 </body>
 

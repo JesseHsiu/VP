@@ -16,16 +16,43 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var width = screen.width;
-var height = screen.height;
+// var width = screen.width;
+// var height = screen.height;
 
-console.log(width);
-console.log(height);
+// console.log(width);
+// console.log(height);
 
-$("#btn_submit").on("tap",function(){
-  window.location.href='test.html';
-});
+// $("#btn_submit").on("tap",function(){
+//   window.location.href='test.html';
+// });
+// $(".Intro_option").each(function () {
+//     var option = this;
+//     option.addEventListener("tap", function() {
+//         console.log("hello");
+//     });
+// });​
 
+
+// document.addEventListener("deviceready", onDeviceReady, false);
+
+// function onDeviceReady() {
+//     console.log("index.js");
+//     StatusBar.hide();
+//     screen.lockOrientation('landscape');
+//     // Now safe to use device APIs
+//     document.getElementById("VP_1_intro_wrong").style.display="none";
+
+    
+
+    
+// }
+
+        // $(".Intro_option").each(function () {
+        //     var option = this;
+        //     option.addEventListener("tap", function() {
+        //         console.log("hello");
+        //     });
+        // });​
 var app = {
     // Application Constructor
     initialize: function() {
@@ -45,10 +72,11 @@ var app = {
     onDeviceReady: function() {
         console.log("index.js");
         StatusBar.hide();
-        // screen.lockOrientation('landscape');
+        screen.lockOrientation('landscape');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+        console.log(id);
         // var parentElement = document.getElementById(id);
         // var listeningElement = parentElement.querySelector('.listening');
         // var receivedElement = parentElement.querySelector('.received');
