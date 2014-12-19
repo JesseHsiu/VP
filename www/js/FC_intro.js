@@ -1,4 +1,4 @@
-var tmp_DirList;
+
 var FC_Intro_ans;
 $(document).on("pageshow","#FC_intro",function(){
 	window.plugins.directoryList.getList("www/img/FC/1/que",FC_Intro_onDirectoryReadSuccess,FC_Intro_onDirectoryReadError);

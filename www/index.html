@@ -446,28 +446,83 @@
     </div>
 
     <div data-role="page" id="VSM_intro">
+        
     </div>
     <div data-role="page" id="VSM">
+
     </div>
 
     <div data-role="page" id="FG_intro">
+
     </div>
     <div data-role="page" id="FG">
+
     </div>
 
     <div data-role="page" id="VC_intro">
+        <p class="Main_tile_intro">請在下面選出跟上面缺角的圖形，圖形可能會旋轉。</p>
+        <div class="row VP_1_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="VC_Intro_Q_img">
+            </div>
+        </div>
+        
+
+        <div class="row VP_1_Options">
+            <div class="col-sm-2 col-sm-offset-2">
+                <button id="VC_Intro_1" class="Intro_option"><img id="VC_Intro_1_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VC_Intro_2" class="Intro_option"><img id="VC_Intro_2_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VC_Intro_3" class="Intro_option"><img id="VC_Intro_3_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VC_Intro_4" class="Intro_option"><img id="VC_Intro_4_img"></button>
+            </div>
+        </div>
+        <div id="VC_Intro_wrong" class="alert alert-danger" role="alert"  style="display: none;">
+            <p><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><strong>錯誤</strong> 太可惜了！請重新選擇正確的符號！</p>
+        </div>
+        <div id="VC_Intro_right" class="alert alert-success" role="alert" style="display: none;">
+            <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>正確</strong> 太棒了！你選擇對的符號！繼續這麼做！</p>
+        </div>
+
+        <p id="VC_Intro_Next" style="text-align: center; display: none;"><a href="#VC" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a></p>
+        <script type="text/javascript" src="js/VC_intro.js"></script>
     </div>
     <div data-role="page" id="VC">
+        <p class="Main_tile_intro">請在下面選出跟上面缺角的圖形，圖形可能會旋轉。</p>
+        <div class="row VP_1_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="VC_Q_img">
+            </div>
+        </div>
+        <div class="row VP_1_Options" id="VM_Option">
+            <div class="col-sm-2 col-sm-offset-2">
+                <button id="VC_1" class="Intro_option"><img id="VC_1_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VC_2" class="Intro_option"><img id="VC_2_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VC_3" class="Intro_option"><img id="VC_3_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VC_4" class="Intro_option"><img id="VC_4_img"></button>
+            </div>
+        </div>
+        <p style="text-align: center;">
+            <a id="VC_Confirm_btn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">下一題</a>
+        </p>
+        <script type="text/javascript" src="js/VC.js"></script>
     </div>
 
     <div data-role="page" id="Section_endPage">
         <h1>恭喜您完成了這一部分的測驗，請繼續加油</h1>
         <p><a href="#VP_Panel" class="ui-btn ui-corner-all ui-btn-inline">繼續</a></p>
     </div>
-
-    
-    
-
 
     <script type="text/javascript">
         var glide = $('#slider_Index').glide({
