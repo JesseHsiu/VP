@@ -14,25 +14,26 @@ function next_Qusetion() {
 	if (now_q==16)
 	{
 		$.mobile.changePage($("#Section_endPage"), "slideup");
-	};
+	}
+	else
+	{
+		$("#VP_1_Confirm_btn").css('display','none');
+		// console.log("123");//now_q.toString()
+		//Question
+		$('#VP_1_Q_img').attr('src', 'img/VD/'+now_q.toString()+'/ans/0.png');
+		$('#VP_1_1_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[0]);
+		$('#VP_1_2_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[1]);
+		$('#VP_1_3_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[2]);
+		$('#VP_1_4_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[3]);
+		$('#VP_1_5_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[4]);
+		//add number
+		console.log(now_q);
+		now_q++;
 
-
-	$("#VP_1_Confirm_btn").css('display','none');
-	// console.log("123");//now_q.toString()
-	//Question
-	$('#VP_1_Q_img').attr('src', 'img/VD/'+now_q.toString()+'/ans/0.png');
-	$('#VP_1_1_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[0]);
-	$('#VP_1_2_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[1]);
-	$('#VP_1_3_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[2]);
-	$('#VP_1_4_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[3]);
-	$('#VP_1_5_img').attr('src', 'img/VD/'+now_q.toString()+'/opt/'+myArray[4]);
-	//add number
-	console.log(now_q);
-	now_q++;
-
-	//disapear
-	
-	myArray.sort(function(){ return Math.random()-0.5; }); 
+		//disapear
+		
+		myArray.sort(function(){ return Math.random()-0.5; }); 
+	}
 }
 
 

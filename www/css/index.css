@@ -135,7 +135,7 @@ body
   font-size: 50px;
   text-align: center;
   padding-top: 30px;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 
   margin-right: 2%;
   margin-left: 2%;
@@ -144,8 +144,8 @@ body
 {
   margin: 0px;
   padding: 0px;
-  padding-top: 10%;
-  padding-bottom: 30px;
+  margin-top: 5%;
+  margin-bottom: 30px;
 }
 .VP_1_Options img, .VP_1_Caption img
 {

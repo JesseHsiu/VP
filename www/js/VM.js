@@ -1,5 +1,8 @@
 // document.getElementById('tmp_test').addEventListener('click',this.haha('123'),false);
 var VM_now_q=1;
+$("#VM_Confirm_btn").css('display','none');
+$('#VM_Option').css('display','none');
+
 $(document).on("pageshow","#VM",function(){
 	VM_next_Qusetion();
 });
@@ -17,10 +20,13 @@ function VM_next_Qusetion() {
 	if (VM_now_q==16)
 	{
 		$.mobile.changePage($("#Section_endPage"), "slideup");
-	};
-	$("#VM_Confirm_btn").css('display','none');
-	$('#VM_Option').css('display','none');
-	window.plugins.directoryList.getList("www/img/VM/"+VM_now_q+"/ans",VM_onDirectoryReadSuccess,VM_onDirectoryReadError);
+	}
+	else
+	{
+		$("#VM_Confirm_btn").css('display','none');
+		$('#VM_Option').css('display','none');
+		window.plugins.directoryList.getList("www/img/VM/"+VM_now_q+"/ans",VM_onDirectoryReadSuccess,VM_onDirectoryReadError);
+	}
 }
 
 
