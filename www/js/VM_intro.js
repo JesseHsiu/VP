@@ -1,6 +1,6 @@
 $('#VM_Intro_Option').hide();
 var tmp_DirList;
-$(document).on("pageshow",function(){
+$('#VM_intro').on("pageshow",function(){
 	window.plugins.directoryList.getList("www/img/VM/1/ans",onDirectoryReadSuccess,onDirectoryReadError);
 });
 

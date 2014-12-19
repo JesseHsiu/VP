@@ -3,8 +3,6 @@ var VC_now_q=1;
 $("#VC_Confirm_btn").css('display','none');
 
 $('#VC').on("pageshow",function(){
-	console.log("pageshow");
-	console.log("VC:"+VC_now_q);
 	VC_next_Qusetion();
 });
 
