@@ -71,8 +71,10 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         console.log("index.js");
+        window.plugins.directoryList.getList("www/img",onDirectoryReadSuccess,onDirectoryReadError);
         StatusBar.hide();
         screen.lockOrientation('landscape');
+        FastClick.attach(document.body);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -89,3 +91,18 @@ var app = {
     }
 };
 app.initialize();
+
+function onDirectoryReadSuccess(directoryList) {
+    for (var entry in directoryList) {
+        if( directoryList.hasOwnProperty( entry ) ) {
+          console.log(directoryList[entry].name);
+        } 
+    }
+}
+
+// onError Callback if directory does not exists or it is empty
+//
+function onDirectoryReadError(error) {
+    alert('Directory Read error \n' +
+          'message: ' + error);
+}

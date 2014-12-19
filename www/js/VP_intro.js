@@ -2,7 +2,6 @@
 
 var myArray = ['1.png','2.png','3.png','4.png','5.png']
 myArray.sort(function(){ return Math.random()-0.5; }); 
-// console.log(myArray);
 
 //Question
 $('#Q_img').attr('src', 'img/VD/1/ans/0.png');

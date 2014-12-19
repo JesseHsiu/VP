@@ -34,6 +34,7 @@
     
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/jquery.glide.min.js"></script>
@@ -211,21 +212,21 @@
             <div class="row" id="VP_1_row">
                 <div class="col-sm-3 col-sm-offset-2"><a href="#VP_1_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺區辨</p></a>
                 </div>
-                <div class="col-sm-3"><a href="#VP_2_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺記憶</p></a>
+                <div class="col-sm-3"><a href="#VM_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺記憶</p></a>
                 </div>
-                <div class="col-sm-3"><a href="#VP_3_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">空間概念</p></a>
+                <div class="col-sm-3"><a href="#SR_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">空間概念</p></a>
                 </div>
             </div>
             <!-- </fieldset> -->
             <!-- <fieldset id="select3" class="VP_select ui-grid-c ui-responsive"> -->
             <div class="row">
-                <div class="col-sm-3"><a href="#VP_4_intro" class="ui-btn ui-corner-all "><p class="VP_Panel_link">形狀恆常</p></a>
+                <div class="col-sm-3"><a href="#FC_intro" class="ui-btn ui-corner-all "><p class="VP_Panel_link">形狀恆常</p></a>
                 </div>
-                <div class="col-sm-3"><a href="#VP_5_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺順序記憶</p></a>
+                <div class="col-sm-3"><a href="#VSM_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺順序記憶</p></a>
                 </div>
-                <div class="col-sm-3"><a href="#VP_6_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">前景背景</p></a>
+                <div class="col-sm-3"><a href="#FG_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">前景背景</p></a>
                 </div>
-                <div class="col-sm-3"><a href="#VP_7_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺完形</p></a>
+                <div class="col-sm-3"><a href="#VC_intro" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺完形</p></a>
                 </div>
             </div>
             <!-- </fieldset> -->
@@ -248,16 +249,17 @@
     </div>
     <!-- VP Panel end-->
 
+    <!-- VD Intro Part -->
     <div data-role="page" id="VP_1_intro">
         <p class="Main_tile_intro">請在下面選出跟上面一模一樣的圖形。</p>
-        <div class="row VP_1_intro_Caption">
+        <div class="row VP_1_Caption">
             <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
                 <img id="Q_img">
             </div>
         </div>
         
 
-        <div class="row VP_1_intro_Options">
+        <div class="row VP_1_Options">
             <div class="col-sm-2 col-sm-offset-1">
                 <button id="1" class="Intro_option"><img id="1_img"></button>
             </div>
@@ -284,63 +286,104 @@
         <p id="VP_1_intro_Next" style="text-align: center; display: none;"><a href="#VP_1" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a></p>
         <script type="text/javascript" src="js/VP_intro.js"></script>
     </div>
+    <!-- VD Intro Part END -->
+
+    <!-- VD Part -->
     <div data-role="page" id="VP_1">
-        <div class="row VP_1_intro_Caption">
+        <p class="Main_tile_intro">請在下面選出跟上面一模一樣的圖形。</p>
+        <div class="row VP_1_Caption">
             <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
-                <img id="Q_img">
+                <img id="VP_1_Q_img">
             </div>
         </div>
         
 
-        <div class="row VP_1_intro_Options">
+        <div class="row VP_1_Options">
             <div class="col-sm-2 col-sm-offset-1">
-                <button id="1" class="Intro_option"><img id="1_img"></button>
+                <button id="VP_1_1" class="Intro_option"><img id="VP_1_1_img"></button>
             </div>
             <div class="col-sm-2">
-                <button id="2" class="Intro_option"><img id="2_img"></button>
+                <button id="VP_1_2" class="Intro_option"><img id="VP_1_2_img"></button>
             </div>
             <div class="col-sm-2">
-                <button id="3" class="Intro_option"><img id="3_img"></button>
+                <button id="VP_1_3" class="Intro_option"><img id="VP_1_3_img"></button>
             </div>
             <div class="col-sm-2">
-                <button id="4" class="Intro_option"><img id="4_img"></button>
+                <button id="VP_1_4" class="Intro_option"><img id="VP_1_4_img"></button>
             </div>
             <div class="col-sm-2">
-                <button id="5" class="Intro_option"><img id="5_img"></button>
+                <button id="VP_1_5" class="Intro_option"><img id="VP_1_5_img"></button>
             </div>
         </div>
-        <p id="VP_1_Next" style="text-align: center; display: none;"><a id="Confirm_btn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">下一題</a></p>
-        <script type="text/javascript" src="js/VP.js"></script>
+        <p style="text-align: center;">
+            <a id="VP_1_Confirm_btn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">下一題</a>
+        </p>
+        <script type="text/javascript" src="js/VD.js"></script>
+    </div>
+    <!-- VD Part END -->
+
+    <div data-role="page" id="VM_intro">
+        <p class="Main_tile_intro">請您記住螢幕中間這個圖形，圖形消失後，請你從幾個圖形中找出剛剛那個圖形。</p>
+        <div class="row VP_1_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="VM_Intro_Q_img">
+            </div>
+        </div>
+        <div class="row VP_1_Options" id="VM_Option">
+            <div class="col-sm-2 col-sm-offset-2">
+                <button id="VM_Intro_1" class="Intro_option"><img id="VM_Intro_1_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VM_Intro_2" class="Intro_option"><img id="VM_Intro_2_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VM_Intro_3" class="Intro_option"><img id="VM_Intro_3_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="VM_Intro_4" class="Intro_option"><img id="VM_Intro_4_img"></button>
+            </div>
+        </div>
+        <div id="VM_Intro_wrong" class="alert alert-danger" role="alert"  style="display: none;">
+            <p><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><strong>錯誤</strong> 太可惜了！請重新選擇正確的符號！</p>
+        </div>
+        <div id="VM_Intro_right" class="alert alert-success" role="alert" style="display: none;">
+            <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>正確</strong> 太棒了！你選擇對的符號！繼續這麼做！</p>
+        </div>
+
+        <p id="VM_Intro_Next" style="text-align: center; display: none;"><a href="#VP_1" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a></p>
+        <script type="text/javascript" src="js/VM_intro.js"></script>
+    </div>
+    <div data-role="page" id="VM">
     </div>
 
-    <div data-role="page" id="VP_2_intro">
+    <div data-role="page" id="SR_intro">
     </div>
-    <div data-role="page" id="VP_2">
-    </div>
-
-    <div data-role="page" id="VP_3_intro">
-    </div>
-    <div data-role="page" id="VP_3">
+    <div data-role="page" id="SR">
     </div>
 
-    <div data-role="page" id="VP_4_intro">
+    <div data-role="page" id="FC_intro">
     </div>
-    <div data-role="page" id="VP_4">
-    </div>
-
-    <div data-role="page" id="VP_5_intro">
-    </div>
-    <div data-role="page" id="VP_5">
+    <div data-role="page" id="FC">
     </div>
 
-    <div data-role="page" id="VP_6_intro">
+    <div data-role="page" id="VSM_intro">
     </div>
-    <div data-role="page" id="VP_6">
+    <div data-role="page" id="VSM">
     </div>
 
-    <div data-role="page" id="VP_7_intro">
+    <div data-role="page" id="FG_intro">
     </div>
-    <div data-role="page" id="VP_7">
+    <div data-role="page" id="FG">
+    </div>
+
+    <div data-role="page" id="VC_intro">
+    </div>
+    <div data-role="page" id="VC">
+    </div>
+
+    <div data-role="page" id="Section_endPage">
+        <h1>恭喜您完成了這一部分的測驗，請繼續加油</h1>
+        <p><a href="#VP_Panel" class="ui-btn ui-corner-all ui-btn-inline">繼續</a></p>
     </div>
 
     
