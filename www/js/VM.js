@@ -3,7 +3,8 @@ var VM_now_q=1;
 $("#VM_Confirm_btn").css('display','none');
 $('#VM_Option').css('display','none');
 
-$(document).on("pageshow","#VM",function(){
+$('#VM').on("pageshow",function(){
+	console.log("pageshow");
 	VM_next_Qusetion();
 });
 
@@ -19,7 +20,10 @@ function VM_next_Qusetion() {
 
 	if (VM_now_q==16)
 	{
-		$.mobile.changePage($("#Section_endPage"), "slideup");
+		// $.mobile.changePage("Section_endPage.html", "slideup");
+		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
+		  transition: 'flow'
+		});
 	}
 	else
 	{

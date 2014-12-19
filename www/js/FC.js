@@ -2,7 +2,8 @@
 var FC_now_q=1;
 $("#FC_Confirm_btn").css('display','none');
 
-$(document).on("pageshow","#FC",function(){
+$('#FC').on("pageshow",function(){
+	console.log("pageshow");
 	FC_next_Qusetion();
 });
 
@@ -18,7 +19,10 @@ function FC_next_Qusetion() {
 
 	if (FC_now_q==16)
 	{
-		$.mobile.changePage($("#Section_endPage"), "slideup");
+		// $.mobile.changePage("Section_endPage.html", "slideup");
+		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
+		  transition: 'flow'
+		});
 	}
 	else
 	{

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VP_Intro</title>
+</head>
+<body>
+	<!-- VP Intro -->
+    <div data-role="page" id="VP_Intro">
+        <div data-role="header">
+            <h1 style="font-size:50px; margin:0px;">視知覺測驗</h1>
+        </div>
+        <div class="page_content" data-role="content">
+            <div class="slider" id="slider_VP">
+                <ul class="slider__wrapper">
+                    <li class="slider__item" style="background-color: #97CBFF;">
+                        <p class="text_inSlider">這個測驗會請您使用筆在螢幕上選擇正確的答案。</p>
+                    </li>
+                    <li class="slider__item" style="background-color: #ACD6FF;">
+                        <p class="text_inSlider">總共會有七個小部分，每一個部分的規則不一樣。</p>
+                    </li>
+                    <li class="slider__item" style="background-color: #C4E1FF;">
+                        <p class="text_inSlider">如果在過程中有遇到任何問題，有感到身體不舒服（例：眼睛疲累）可以隨時提出。</p>
+                    </li>
+                    <li class="slider__item" style="background-color: #D2E9FF;">
+                        <p class="text_inSlider">準備好請按開始。</p>
+                    </li>
+                </ul>
+            </div>
+            <p style="text-align: center;"><a id="VP_start_btn" href="VP_Panel.html" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-disabled">完成</a>
+            </p>
+
+        </div>
+        <script type="text/javascript">
+    	var glide2 = $('#slider_VP').glide({
+            autoplay: false,
+            circular: false,
+            arrowRightText: '',
+            arrowLeftText: '',
+            afterTransition: function() {
+                console.log("haha");
+                if (glide2.current() == 4) {
+                    console.log("true");
+                    $('#VP_start_btn').removeClass('ui-disabled');
+                } else {}
+            }
+        }).data('api_glide');
+    </script>
+    </div>
+    <!-- VP Intro end -->
+
+	
+</body>
+</html>

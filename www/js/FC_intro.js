@@ -1,6 +1,6 @@
 
 var FC_Intro_ans;
-$(document).on("pageshow","#FC_intro",function(){
+$(document).on("pageshow",function(){
 	window.plugins.directoryList.getList("www/img/FC/1/que",FC_Intro_onDirectoryReadSuccess,FC_Intro_onDirectoryReadError);
 	window.plugins.directoryList.getList("www/img/FC/1/ans",FC_Intro_ans_onDirectoryReadSuccess,FC_Intro_ans_onDirectoryReadError);
 });

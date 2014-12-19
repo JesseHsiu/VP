@@ -13,7 +13,10 @@ var myArray = ['1.png','2.png','3.png','4.png','5.png']
 function next_Qusetion() {
 	if (now_q==16)
 	{
-		$.mobile.changePage($("#Section_endPage"), "slideup");
+		// $.mobile.changePage("Section_endPage.html", "slideup");
+		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
+		  transition: 'flow'
+		});
 	}
 	else
 	{

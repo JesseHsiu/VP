@@ -1,6 +1,6 @@
 
 var VC_Intro_ans;
-$(document).on("pageshow","#VC_intro",function(){
+$(document).on("pageshow",function(){
 	window.plugins.directoryList.getList("www/img/VC/1/que",VC_Intro_onDirectoryReadSuccess,VC_Intro_onDirectoryReadError);
 	window.plugins.directoryList.getList("www/img/VC/1/ans",VC_Intro_ans_onDirectoryReadSuccess,VC_Intro_ans_onDirectoryReadError);
 });

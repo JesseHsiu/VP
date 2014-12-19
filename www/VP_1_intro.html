@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VP_1_Intro</title>
+</head>
+<body>
+	<!-- VD Intro Part -->
+    <div data-role="page" id="VP_1_intro">
+        <p class="Main_tile_intro">請在下面選出跟上面一模一樣的圖形。</p>
+        <div class="row VP_1_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="Q_img">
+            </div>
+        </div>
+        
+
+        <div class="row VP_1_Options">
+            <div class="col-sm-2 col-sm-offset-1">
+                <button id="1" class="Intro_option"><img id="1_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="2" class="Intro_option"><img id="2_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="3" class="Intro_option"><img id="3_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="4" class="Intro_option"><img id="4_img"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="5" class="Intro_option"><img id="5_img"></button>
+            </div>
+        </div>
+        <div id="VP_1_intro_wrong" class="alert alert-danger" role="alert"  style="display: none;">
+            <p><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><strong>錯誤</strong> 太可惜了！請重新選擇正確的符號！</p>
+        </div>
+        <div id="VP_1_intro_right" class="alert alert-success" role="alert" style="display: none;">
+            <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>正確</strong> 太棒了！你選擇對的符號！繼續這麼做！</p>
+        </div>
+
+        <p id="VP_1_intro_Next" style="text-align: center; display: none;"><a href="VP_1.html" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a></p>
+        <script type="text/javascript" src="js/VP_intro.js"></script>
+    </div>
+    <!-- VD Intro Part END -->
+</body>
+</html>

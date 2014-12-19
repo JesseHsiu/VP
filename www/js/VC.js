@@ -2,7 +2,9 @@
 var VC_now_q=1;
 $("#VC_Confirm_btn").css('display','none');
 
-$(document).on("pageshow","#VC",function(){
+$('#VC').on("pageshow",function(){
+	console.log("pageshow");
+	console.log("VC:"+VC_now_q);
 	VC_next_Qusetion();
 });
 
@@ -18,7 +20,10 @@ function VC_next_Qusetion() {
 
 	if (VC_now_q==16)
 	{
-		$.mobile.changePage($("#Section_endPage"), "slideup");
+		// $.mobile.changePage("Section_endPage.html", "slideup");
+		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
+		  transition: 'flow'
+		});
 	}
 	else
 	{
@@ -27,6 +32,13 @@ function VC_next_Qusetion() {
 		window.plugins.directoryList.getList("www/img/VC/"+VC_now_q+"/que",VC_onDirectoryReadSuccess,VC_onDirectoryReadError);
 	}
 }
+
+// $('button').on("click",function(ele){
+// 	$("script[src=""]")
+	
+		
+// })
+
 
 
 $('#VC_1').on("click", function() {
