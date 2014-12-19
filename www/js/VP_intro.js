@@ -15,22 +15,22 @@ $('#5_img').attr('src', 'img/VD/1/opt/'+myArray[4]);
 
 
 $('#1').on( "click", function() {
-	check_option(document.getElementById("1_img"));
+	VD_check_option(document.getElementById("1_img"));
 });
 $('#2').on( "click", function() {
-	check_option(document.getElementById("2_img"));
+	VD_check_option(document.getElementById("2_img"));
 });
 $('#3').on( "click", function() {
-	check_option(document.getElementById("3_img"));
+	VD_check_option(document.getElementById("3_img"));
 });
 $('#4').on( "click", function() {
-	check_option(document.getElementById("4_img"));
+	VD_check_option(document.getElementById("4_img"));
 });
 $('#5').on( "click", function() {
-	check_option(document.getElementById("5_img"));
+	VD_check_option(document.getElementById("5_img"));
 });
 
-function check_option (element) {
+function VD_check_option (element) {
 	// body...
 	console.log(element.src.slice(-5,-4));
 
