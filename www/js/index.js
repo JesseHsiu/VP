@@ -73,6 +73,11 @@ var app = {
         StatusBar.hide();
         screen.lockOrientation('landscape');
         FastClick.attach(document.body);
+
+
+        $.mobile.pageContainer.pagecontainer('change', "register.html", {
+          transition: 'slide'
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
