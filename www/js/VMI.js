@@ -1,44 +1,51 @@
-var ctx, color = "#000";	
+var now_q=1;
 
-$('#VMI_intro').on("pageshow",function(){
-	$('#Draw_section').height($('#Intro_Q_img').height());
-	$('#Draw_section').width($('#Intro_Q_img').width());
+var ctx, color = "#000";
+
+$('#VMI').on("pageshow",function(){
+	console.log("pageshow");
+	$('#Draw_section').height($('#Q_img').height());
+	$('#Draw_section').width($('#Q_img').width());
 
 
-	$('#content').height($('#Intro_Q_img').height());
-	$('#content').width($('#Intro_Q_img').width());
+	$('#content').height($('#Q_img').height());
+	$('#content').width($('#Q_img').width());
 
 	// $("#canvas").css("background-color","yellow");
 });
 
 
 $(document).ready(function () {
-	$('#Intro_Q_img').attr('src', 'img/VMI/1.png');
-
-
-	
-
-	// setup a new canvas for drawing wait for device init
-    setTimeout(function(){
-	   newCanvas();
-    }, 1000);
-		
-	// reset palette selection (css) and select the clicked color for canvas strokeStyle
-	// $(".palette").click(function(){
-	// 	$(".palette").css("border-color", "#777");
-	// 	$(".palette").css("border-style", "solid");
-	// 	$(this).css("border-color", "#fff");
-	// 	$(this).css("border-style", "dashed");
-	// 	color = $(this).css("background-color");
-	// 	ctx.beginPath();
-	// 	ctx.strokeStyle = color;
-	// });
-    
-	// // link the new button with newCanvas() function
-	// $("#new").click(function() {
-	// 	newCanvas();
-	// });
+	next_question();
 });
+
+function next_question () {
+	// console.log("set attr");
+	
+	// setup a new canvas for drawing wait for device init
+	if (now_q==1)
+	{
+		$('#Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
+		setTimeout(function(){
+		   newCanvas();
+	    }, 1000);
+	    now_q++;
+	}
+	else if(now_q==19)
+	{
+		$.mobile.pageContainer.pagecontainer('change', "VMI_endPage.html", {
+		  transition: 'flow'
+		});
+	}
+	else
+	{
+		$('#Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
+		newCanvas();
+		now_q++;
+	}
+	
+}
+
 
 // function to setup a new canvas for drawing
 function newCanvas(){
@@ -78,9 +85,15 @@ $.fn.drawTouch = function() {
 	$(this).on("touchstart", start);
 	$(this).on("touchmove", move);	
 	$(this).on("touchend",function () {
-		document.getElementById("Intro_Next").style.display="block";
+		document.getElementById("Next_btn").style.display="block";
 	})
 }; 
+
+$('#Next_btn').on("click", function() {
+	next_question();
+	document.getElementById("Next_btn").style.display="none";
+	// document.getElementById("VP_Confirm_btn").style.display="none";
+});
     
 //document.getElementById("VC_Intro_Next").style.display="block";
 // // prototype to	start drawing on pointer(microsoft ie) using canvas moveTo and lineTo
