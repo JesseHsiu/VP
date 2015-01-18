@@ -124,11 +124,9 @@ body
   padding-top: 0px;
   font-size: 40px !important;
 }
-#VP_1_row
+.VPPanel_row
 {
-  margin-left: -60px;
-  /*margin-left: 100px;*/
-  /*padding-left: 200px;*/
+  margin-left: -50px; 
 }
 .Main_tile_intro
 {

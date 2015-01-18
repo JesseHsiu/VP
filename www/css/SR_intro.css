@@ -1,0 +1,37 @@
+.Main_tile_intro
+{
+  font-size: 50px;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 5%;
+
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.SR_1_Caption
+{
+
+}
+
+.SR_1_Options
+{
+	margin-top: 20px;
+}
+.Answer_container
+{
+	display: inline-block;
+    position: relative;
+}
+.SRAns_button
+{
+    position: absolute;
+    background-color: white;
+}
+.SR_1_Options img, .SR_intro_Q img
+{
+  box-sizing: border-box;
+  display: inline-block;
+  width: 99%;
+  margin: 0 1%;
+}
