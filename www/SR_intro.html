@@ -6,7 +6,7 @@
 </head>
 <body>
     <div data-role="page" id="SR_intro">
-        <p class="Main_tile_intro">請在下面點選跟上面位置一樣的格子。</p>
+        <p class="Main_tile_intro">請在下面點選跟左側位置一樣的格子。</p>
         <!-- <div class="row SR_intro_Q">
             <div style="vertical-align:middle; text-align: center;" class="col-sm-4 col-sm-offset-4">
                 <img id="SR_Q_img">
@@ -19,17 +19,22 @@
         </div> -->
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
-                <img id="SR_Q_img">
+                <img id="SR_intro_Q_img">
             </div>
-            <div id="SR_Answersheet" class="col-sm-4 col-sm-offset-2">
-                <div id="Answer_container">
-                    <img id="SR_Grid">
+            <div id="SR_Answersheet_intro" class="col-sm-4 col-sm-offset-2">
+                <div id="Answer_container_intro">
+                    <img id="SR_intro_Grid">
                 </div>
             </div>
         </div>
+
+        <div id="SR_intro_right" class="alert alert-success" role="alert" style="display: none;">
+            <p><i class="fa fa-check-circle"></i><strong>正確</strong> 太棒了！你選擇對的符號！繼續這麼做！</p>
+        </div>
         <p style="text-align: center;">
-            <a id="SR_Confirm_btn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a>
+            <a id="GotoRealTest" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" style="display: none;" href="SR.html">進入測驗</a>
         </p>
+
         <script type="text/javascript" src="js/SR_intro.js"></script>
         <link rel="stylesheet" type="text/css" href="css/SR_intro.css" />
     </div>

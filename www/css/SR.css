@@ -9,17 +9,16 @@
   margin-left: 2%;
 }
 
-#SR_intro_right
+#SR_right
 {
 	margin-top: 20px;
 }
-
-.Answer_container_intro
+.Answer_container
 {
 	display: inline-block;
     position: relative;
 }
-.SRAns_intro_button
+.SRAns_button
 {
     position: absolute;
     background-color: white;
