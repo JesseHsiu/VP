@@ -1,19 +1,20 @@
 var ctx, color = "#000";	
 
 $('#VMI_intro').on("pageshow",function(){
-	$('#Draw_section').height($('#Intro_Q_img').height());
-	$('#Draw_section').width($('#Intro_Q_img').width());
+	console.log($("#VMI_Intro_div_Q").width());
 
+	$('#Draw_section').height($("#VMI_Intro_div_Q").width());
+	$('#Draw_section').width($("#VMI_Intro_div_Q").width());
 
-	$('#content').height($('#Intro_Q_img').height());
-	$('#content').width($('#Intro_Q_img').width());
+	$('#content').height($("#VMI_Intro_div_Q").width());
+	$('#content').width($("#VMI_Intro_div_Q").width());
 
 	// $("#canvas").css("background-color","yellow");
 });
 
 
 $(document).ready(function () {
-	$('#Intro_Q_img').attr('src', 'img/VMI/1.png');
+	$('#VMI_Intro_Q_img').attr('src', 'img/VMI/1.png');
 
 
 	

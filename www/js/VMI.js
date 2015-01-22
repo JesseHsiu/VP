@@ -4,12 +4,12 @@ var ctx, color = "#000";
 
 $('#VMI').on("pageshow",function(){
 	console.log("pageshow");
-	$('#Draw_section').height($('#Q_img').height());
-	$('#Draw_section').width($('#Q_img').width());
+	$('#Draw_section').height($('#VMI_div_Q').width());
+	$('#Draw_section').width($('#VMI_div_Q').width());
 
 
-	$('#content').height($('#Q_img').height());
-	$('#content').width($('#Q_img').width());
+	$('#content').height($('#VMI_div_Q').width());
+	$('#content').width($('#VMI_div_Q').width());
 
 	// $("#canvas").css("background-color","yellow");
 });
@@ -25,7 +25,7 @@ function next_question () {
 	// setup a new canvas for drawing wait for device init
 	if (now_q==1)
 	{
-		$('#Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
+		$('#VMI_Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
 		setTimeout(function(){
 		   newCanvas();
 	    }, 1000);
@@ -39,7 +39,7 @@ function next_question () {
 	}
 	else
 	{
-		$('#Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
+		$('#VMI_Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
 		newCanvas();
 		now_q++;
 	}
