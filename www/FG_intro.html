@@ -5,6 +5,42 @@
 	<title>FG_intro</title>
 </head>
 <body>
-	
+	<div data-role="page" id="FG_intro">
+        <p class="Main_tile_intro">請觀察上方的圖片是如何組成的，在下方點選組成的成員</p>
+        <div class="row VP_1_Caption">
+            <div style="text-align : center;" class="col-sm-2 col-sm-offset-5">
+                <img id="FG_Intro_Q_img">
+            </div>
+        </div>
+        
+
+        <div class="row VP_1_Options">
+            <div class="col-sm-2 col-sm-offset-1">
+                <button id="FG_intro_1" class="Intro_option"><img id="FG_Intro_1_img" class="FG_Intro_Imgs"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="FG_intro_2" class="Intro_option"><img id="FG_Intro_2_img" class="FG_Intro_Imgs"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="FG_intro_3" class="Intro_option"><img id="FG_Intro_3_img" class="FG_Intro_Imgs"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="FG_intro_4" class="Intro_option"><img id="FG_Intro_4_img" class="FG_Intro_Imgs"></button>
+            </div>
+            <div class="col-sm-2">
+                <button id="FG_intro_5" class="Intro_option"><img id="FG_Intro_5_img" class="FG_Intro_Imgs"></button>
+            </div>
+        </div>
+        <div id="FG_Intro_wrong" class="alert alert-danger" role="alert"  style="display: none;">
+            <p><i class="fa fa-times"></i><strong>錯誤</strong> 太可惜了！請重新選擇正確的符號！</p>
+        </div>
+        <div id="FG_Intro_right" class="alert alert-success" role="alert" style="display: none;">
+            <p><i class="fa fa-check-circle"></i><strong>正確</strong> 太棒了！你選擇對的符號！繼續這麼做！</p>
+        </div>
+
+        <p id="FG_Intro_Next" style="text-align: center; display: none;"><a href="FG.html" data-rel="page" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">進入測驗</a></p>
+        <script type="text/javascript" src="js/FG_intro.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/FG_intro.css" />
+    </div>
 </body>
 </html>
