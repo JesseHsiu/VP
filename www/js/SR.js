@@ -3,7 +3,6 @@ var Ans_Array = ["2","4","8"];
 var SR_Qid = 1;
 
 $('#SR').on("pagebeforeshow",function(event, ui){
-	$(ui.prevPage).remove();
 	SR_NextQuestion();
 
 
