@@ -1,7 +1,7 @@
 var inner_points = [[512.000000,87.000000],[794.463806,292.221954],[686.572205,624.278076],[337.427765,624.278076],[229.536209,292.221954],[512.000000,87.000000]];
 var outer_points = [[844.869751,275.844055],[717.724854,667.155945],[306.275146,667.155945],[179.130219,275.844055],[512.000000,34.000000]];
 var nowDrawState = false;
-var error_media = new Media("other/beep.wav")
+var error_media = new Media("other/beep.wav");
 $('#FiveDraw').on("pageshow",function(){
 	
 	var canvas = document.getElementById('Five_Canvas');

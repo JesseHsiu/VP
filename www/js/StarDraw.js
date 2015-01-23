@@ -1,6 +1,7 @@
 var inner_points = [[559.596966,318.488397],[713.623981,318.488397],[589.013508,409.023206],[636.610474,555.511603],[512.000000,464.927466],[387.389527,555.511603],[434.986492,409.023206],[310.376019,318.488397],[464.403034,318.488397],[512.000000,172.000000]];
 var outer_points = [[590.579896,275.844052],[844.869781,275.844052],[639.144942,425.311896],[717.724838,667.155948],[512.000000,517.606665],[306.275162,667.155948],[384.855058,425.311896],[179.130219,275.844052],[433.420104,275.844052],[512.000000,34.000000]];
-
+var nowDrawState = false;
+var error_media = new Media("other/beep.wav");
 $('#StarDraw').on("pageshow",function(){
 	
 	var canvas = document.getElementById('Star_Canvas');
@@ -20,33 +21,12 @@ $('#StarDraw').on("pageshow",function(){
 		context.lineTo(outer_points[i][0],outer_points[i][1]);		
 	}
 
-	// context.lineTo(590.579896,275.844052);
-	// context.lineTo(844.869781,275.844052);
-	// context.lineTo(639.144942,425.311896);
-	// context.lineTo(717.724838,667.155948);
-	// context.lineTo(512.000000,517.606665);
-	// context.lineTo(306.275162,667.155948);
-	// context.lineTo(384.855058,425.311896);
-	// context.lineTo(179.130219,275.844052);
-	// context.lineTo(433.420104,275.844052);
-	// context.lineTo(512.000000,34.000000);
-
 	context.lineJoin = 'round';
 	context.stroke();
 
 
 	context.beginPath();
 	context.moveTo(512.000000,172.000000);
-	// context.lineTo(559.596966,318.488397);
-	// context.lineTo(713.623981,318.488397);
-	// context.lineTo(589.013508,409.023206);
-	// context.lineTo(636.610474,555.511603);
-	// context.lineTo(512.000000,464.927466);
-	// context.lineTo(387.389527,555.511603);
-	// context.lineTo(434.986492,409.023206);
-	// context.lineTo(310.376019,318.488397);
-	// context.lineTo(464.403034,318.488397);
-	// context.lineTo(512.000000,172.000000);
 	for(var i = 0 ; i < inner_points.length; i ++)
 	{
 		context.lineTo(inner_points[i][0],inner_points[i][1]);
@@ -77,6 +57,18 @@ $.fn.drawTouch = function(ctx) {
 		y = e.changedTouches[0].pageY;//-$('#Draw_section').width()-44;//-44;
 		ctx.lineTo(x,y);
 		ctx.stroke();
+
+		if(inTheSection(x,y))
+		{
+			nowDrawState = true;
+		}
+		else
+		{
+			if (nowDrawState === true) {
+				error_media.play();
+			};
+			nowDrawState = false;
+		}
 	};
 	$(this).on("touchstart", start);
 	$(this).on("touchmove", move);	
@@ -85,4 +77,21 @@ $.fn.drawTouch = function(ctx) {
 	// })
 }; 
 
+function inTheSection(x,y)
+{
+	return pnpoly(outer_points,x,y) && !pnpoly(inner_points,x,y);
+}
 
+function pnpoly (Point_array,testx, testy) {
+	
+	// body...
+	var i, j, c = 0;
+	for (i = 0, j = Point_array.length-1; i < Point_array.length; j = i++) {
+		if ( ((Point_array[i][1]>testy) != (Point_array[j][1]>testy)) && (testx < (Point_array[j][0]-Point_array[i][0]) * (testy-Point_array[i][1]) / (Point_array[j][1]-Point_array[i][1]) + Point_array[i][0]) )
+		{
+			c = !c;
+		}
+	}
+
+	return c;
+}
