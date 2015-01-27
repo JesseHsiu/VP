@@ -96,49 +96,38 @@ var app = {
     onFSSuccess: function (fileSystem) {
         console.log("fileSystem existed now");
         app.fs = fileSystem;
-        //fileSystem.root.getDirectory("haha", {create: true, exclusive: false}, app.createUserSuccess, app.createUserFail);
     },
 
     onFSError: function (evt) {
         console.log(evt.error.code);
     },
     createUser: function (UserInfo) {
-        current_userinfo = UserInfo;
+        app.current_userinfo = UserInfo;
         app.fs.root.getDirectory(UserInfo.id, {create: true, exclusive: false}, app.createUserSuccess, app.createUserFail);
         //fileSystem.root.getFile
     },
-    createUserSuccess: function (parent) {
+    createUserSuccess: function (dirEntry) {
         // body...
         console.log("folder create success");
+        dirEntry.getFile("UserInfo.txt", {create: true, exclusive: true}, app.UserInfoFile);
     },
 
     createUserFail: function (error) {
         // body...
         console.log("folder create Fail");
+    },
+    UserInfoFile: function  (fileEntry) {
+        fileEntry.createWriter(app.gotUserInfoFileWriter, app.onFSError);
+    },
+    gotUserInfoFileWriter: function (writer) {
+        writer.onwriteend = function(evt) {
+            console.log('finished writing');
+            if (callback !== undefined) {
+                callback(writer);
+            }
+        };
+        writer.write("id :" +app.current_userinfo.id+"\nsex :" +app.current_userinfo.sex+"\nbirth :" +app.current_userinfo.birth+"\ngrade :" +app.current_userinfo.grade+"\nplace :" +app.current_userinfo.place);
+
     }
-
-
-
 };
 app.initialize();
-
-// function onDeviceReady_File () {
-//     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
-// };
-
-// function onFSSuccess (fileSystem) {
-//     console.log("fileSystem existed now");
-//     fileSystem.root.getDirectory(cordova.file.applicationStorageDirectory+"haha/", {create: true, exclusive: false}, createUserSuccess, createUserFail);
-// };
-
-// function onFSError (evt) {
-//     // body...
-//     console.log("on error");
-// };
-
-// function createUserSuccess (parent) {
-//     console.log("folder create success");
-// };
-// function createUserFail (error) {
-//     console.log("folder create Fail");
-// }
