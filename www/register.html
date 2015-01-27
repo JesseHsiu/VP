@@ -42,9 +42,9 @@
             
                     <h2 style="text-align: center;">基本資料</h2>
                     <label for="text-basic">Code:</label>
-                    <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="">
+                    <input type="number" name="number" pattern="[0-9]*" id="User_id" value="">
                     <label for="text-basic">性別:</label>
-                    <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
+                    <select name="select-choice-8" id="User_sex" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
                     
                         <option>點擊選取性別</option>
                     
@@ -53,9 +53,9 @@
                         <option value="female">女</option>
                     </select>
                     <label for="text-basic">生日:</label>
-                    <input type="date" name="date" id="birthday" value="">
+                    <input type="date" name="date" id="User_birth" value="">
                     <label for="text-basic">年級:</label>
-                    <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
+                    <select name="select-choice-8" id="User_grade" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
                         <option>點擊選取年級</option>
                         <optgroup label="幼稚園">
                             <option value="小">小</option>
@@ -73,7 +73,7 @@
                     </select>
 
                     <label for="text-basic">居住地點:</label>
-                    <select name="select-choice-8" id="select-choice-8" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
+                    <select name="select-choice-8" id="User_place" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
                     
                         <option>點擊選取縣市</option>
                     
@@ -102,28 +102,14 @@
                     </select>
 
                 
-                    <p style="text-align: center;"><a id="confirm_btn" href="userpanel.html" data-rel="page" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">完成</a>
+                    <p style="text-align: center;"><a id="register_confirm_btn" href="userpanel.html" data-rel="page" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">完成</a>
                     </p>
 
 
                 </div>
             </form>
         </div>
-        <script type="text/javascript">
-            var glide = $('#slider_Index').glide({
-                autoplay: false,
-                circular: false,
-                arrowRightText: '',
-                arrowLeftText: '',
-                afterTransition: function() {
-                    console.log("haha");
-                    if (glide.current() == 4) {
-                        console.log("true");
-                        $('#btn_start').removeClass('ui-disabled');
-                    } else {}
-                }
-            }).data('api_glide');
-        </script>
+        <script type="text/javascript" src="js/register.js"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     </div>
     <!-- login/start page end-->

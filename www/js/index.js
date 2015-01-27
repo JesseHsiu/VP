@@ -53,7 +53,14 @@
         //         console.log("hello");
         //     });
         // });​
+
+// document.addEventListener("deviceready", onDeviceReady_File, false); 
+
 var app = {
+
+    fs: null,
+    current_userinfo: null,
+    // fileName : "",
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -73,25 +80,65 @@ var app = {
         StatusBar.hide();
         screen.lockOrientation('landscape');
         FastClick.attach(document.body);
+        
+        
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onFSError);
+        console.log(cordova.file.dataDirectory);
+        // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
 
-
-        $.mobile.pageContainer.pagecontainer('change', "register.html", {
-          transition: 'slide'
-        });
+        $.mobile.pageContainer.pagecontainer('change', "register.html");
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log(id);
-        // var parentElement = document.getElementById(id);
-        // var listeningElement = parentElement.querySelector('.listening');
-        // var receivedElement = parentElement.querySelector('.received');
+    },
 
-        // listeningElement.setAttribute('style', 'display:none;');
-        // receivedElement.setAttribute('style', 'display:block;');
+    onFSSuccess: function (fileSystem) {
+        console.log("fileSystem existed now");
+        app.fs = fileSystem;
+        //fileSystem.root.getDirectory("haha", {create: true, exclusive: false}, app.createUserSuccess, app.createUserFail);
+    },
 
-        // console.log('Received Event: ' + id);
-        
+    onFSError: function (evt) {
+        console.log(evt.error.code);
+    },
+    createUser: function (UserInfo) {
+        current_userinfo = UserInfo;
+        app.fs.root.getDirectory(UserInfo.id, {create: true, exclusive: false}, app.createUserSuccess, app.createUserFail);
+        //fileSystem.root.getFile
+    },
+    createUserSuccess: function (parent) {
+        // body...
+        console.log("folder create success");
+    },
+
+    createUserFail: function (error) {
+        // body...
+        console.log("folder create Fail");
     }
+
+
+
 };
 app.initialize();
 
+// function onDeviceReady_File () {
+//     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
+// };
+
+// function onFSSuccess (fileSystem) {
+//     console.log("fileSystem existed now");
+//     fileSystem.root.getDirectory(cordova.file.applicationStorageDirectory+"haha/", {create: true, exclusive: false}, createUserSuccess, createUserFail);
+// };
+
+// function onFSError (evt) {
+//     // body...
+//     console.log("on error");
+// };
+
+// function createUserSuccess (parent) {
+//     console.log("folder create success");
+// };
+// function createUserFail (error) {
+//     console.log("folder create Fail");
+// }

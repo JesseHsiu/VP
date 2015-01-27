@@ -35,7 +35,7 @@ $('#FiveDraw').on("pageshow",function(){
 
 	$("#Five_Canvas").drawTouch(context);
 	context.strokeStyle = "#000";
-	context.lineWidth = 5;
+	context.lineWidth = 2;
 });
 
 $.fn.drawTouch = function(ctx) {
