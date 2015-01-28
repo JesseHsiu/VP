@@ -60,6 +60,9 @@ var app = {
 
     fs: null,
     current_userinfo: null,
+    current_dirEntry: null,
+    current_fileEntry: null,
+    thingstowrite: null,
     // fileName : "",
     // Application Constructor
     initialize: function() {
@@ -108,6 +111,7 @@ var app = {
     },
     createUserSuccess: function (dirEntry) {
         // body...
+        app.current_dirEntry =dirEntry;
         console.log("folder create success");
         dirEntry.getFile("UserInfo.txt", {create: true, exclusive: true}, app.UserInfoFile);
     },
@@ -117,17 +121,32 @@ var app = {
         console.log("folder create Fail");
     },
     UserInfoFile: function  (fileEntry) {
+        app.current_fileEntry = fileEntry;
         fileEntry.createWriter(app.gotUserInfoFileWriter, app.onFSError);
     },
     gotUserInfoFileWriter: function (writer) {
         writer.onwriteend = function(evt) {
             console.log('finished writing');
-            if (callback !== undefined) {
-                callback(writer);
-            }
         };
         writer.write("id :" +app.current_userinfo.id+"\nsex :" +app.current_userinfo.sex+"\nbirth :" +app.current_userinfo.birth+"\ngrade :" +app.current_userinfo.grade+"\nplace :" +app.current_userinfo.place);
 
+    },
+    CreateFile: function (name) {
+       app.current_dirEntry.getFile(name+".csv", {create: true, exclusive: true}, app.FileToWrite);
+    },
+    FileToWrite: function  (fileEntry) {
+        app.current_fileEntry = fileEntry;
+        // fileEntry.createWriter(app.gotUserInfoFileWriter, app.onFSError);
+    },
+    WriteFile: function () {
+        app.current_fileEntry.createWriter(app.WritingFileNow, app.onFSError);
+    },
+    WritingFileNow:function (writer) {
+        writer.onwriteend = function(evt) {
+            console.log('finished writing');
+        };
+        writer.seek(writer.length);
+        writer.write(app.thingstowrite);
     }
 };
 app.initialize();

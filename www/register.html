@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>register</title>
 </head>
+
 <body>
     <!-- login/start page -->
-    <div data-role="page" id="mainpage">
+    <div data-role="page" id="register">
         <div data-role="header">
             <h1 style="font-size:50px; margin:0px;"><i class="fa fa-graduation-cap"></i>兒童視-動-整合測驗</h1>
         </div>
+        
         <div class="slider" id="slider_Index">
             <ul class="slider__wrapper">
                 <li class="slider__item" style="background-color: #97CBFF;">
@@ -26,30 +29,28 @@
                 </li>
             </ul>
         </div>
+        <p style="text-align: center;"><a id="btn_start" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a ui-disabled" data-transition="pop">開始</a></p>
+        
 
         <!-- <button id class="btn btn-default" style="height=40px;">開始</button>   -->
         <!-- <p style="text-align: center;"><a href="index.html" data-role="button" data-inline="true" data-theme="e">開始</a></p>   -->
-        <p style="text-align: center;"><a id="btn_start" href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a ui-disabled" data-transition="pop">開始</a>
-        </p>
-
-
-
-        <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
         
+        <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+
             <form>
-            
+
                 <div style="padding:0px 50px;">
-            
+
                     <h2 style="text-align: center;">基本資料</h2>
                     <label for="text-basic">Code:</label>
                     <input type="number" name="number" pattern="[0-9]*" id="User_id" value="">
                     <label for="text-basic">性別:</label>
                     <select name="select-choice-8" id="User_sex" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
-                    
+
                         <option>點擊選取性別</option>
-                    
+
                         <option value="男">男</option>
-                    
+
                         <option value="女">女</option>
                     </select>
                     <label for="text-basic">生日:</label>
@@ -61,7 +62,7 @@
                             <option value="小">小</option>
                             <option value="中">中</option>
                             <option value="大">大</option>
-                            </optgroup>
+                        </optgroup>
                         <optgroup label="小學">
                             <option value="一年級">一年級</option>
                             <option value="二年級">二年級</option>
@@ -69,14 +70,14 @@
                             <option value="四年級">四年級</option>
                             <option value="五年級">五年級</option>
                             <option value="六年級">六年級</option>
-                            </optgroup>
+                        </optgroup>
                     </select>
 
                     <label for="text-basic">居住地點:</label>
                     <select name="select-choice-8" id="User_place" data-native-menu="false" data-icon="carat-d" data-iconpos="right">
-                    
+
                         <option>點擊選取縣市</option>
-                    
+
                         <option value="基隆市">基隆市</option>
                         <option value="臺北市">臺北市</option>
                         <option value="新北市">新北市</option>
@@ -101,7 +102,7 @@
                         <option value="連江縣">連江縣</option>
                     </select>
 
-                
+
                     <p style="text-align: center;"><a id="register_confirm_btn" href="userpanel.html" data-rel="page" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">完成</a>
                     </p>
 
@@ -109,9 +110,34 @@
                 </div>
             </form>
         </div>
-        <script type="text/javascript" src="js/register.js"></script>
+        <script type="text/javascript">
+        var glide = $('#slider_Index').glide({
+            autoplay: false,
+            circular: false,
+            arrowRightText: '',
+            arrowLeftText: '',
+            afterTransition: function() {
+                console.log("haha");
+                if (glide.current() == 4) {
+                    console.log("true");
+                    $('#btn_start').removeClass('ui-disabled');
+                } else {}
+            }
+        }).data('api_glide');
+        $("#register_confirm_btn").click(function() {
+            app.createUser({
+                id: $("#User_id").val(),
+                sex: $("#User_sex").val(),
+                birth: $("#User_birth").val(),
+                grade: $("#User_grade").val(),
+                place: $("#User_place").val()
+            });
+        });
+        </script>
+        <!-- <script type="text/javascript" src="js/register.js"></script> -->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     </div>
     <!-- login/start page end-->
 </body>
+
 </html>
