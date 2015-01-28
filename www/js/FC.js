@@ -1,19 +1,17 @@
 // document.getElementById('tmp_test').addEventListener('click',this.haha('123'),false);
 var FC_now_q=1;
+var FC_Answer;
+var FC_time = new Date();
+var FC_starttime;
 $("#FC_Confirm_btn").css('display','none');
 
 $('#FC').on("pageshow",function(){
+	app.CreateFile("FC");
 	console.log("pageshow");
 	FC_next_Qusetion();
 });
 
-// var Q_array = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'];
-
-var FC_myArray = ['1.png','2.png','3.png','4.png']
-
-// console.log(myArray);
-
-
+var FC_myArray = ['1.png','2.png','3.png','4.png'];
 
 function FC_next_Qusetion() {
 
@@ -28,6 +26,7 @@ function FC_next_Qusetion() {
 	{
 		$("#FC_Confirm_btn").css('display','none');
 		$('#FC_Option').css('display','none');
+		FC_starttime = FC_time.getTime();
 		window.plugins.directoryList.getList("www/img/FC/"+FC_now_q+"/que",FC_onDirectoryReadSuccess,FC_onDirectoryReadError);
 	}
 }
@@ -56,11 +55,18 @@ $('#FC_Confirm_btn').on("click", function() {
 function FC_check_option (element) {
 	// body...
 	console.log(element.src.slice(-5,-4));
-	$("#FC_Confirm_btn").css('display','block');
+	FC_time= new Date();
+	var Time_tmp = FC_time.getTime() - FC_starttime;
+
+	app.thingstowrite = (FC_Answer === element.src.slice(-5,-4)) +"," + Time_tmp + "," + element.src.slice(-5,-4)+"\n";
+	app.WriteFile();
+	FC_next_Qusetion();
+	//$("#FC_Confirm_btn").css('display','block');
 }
 
 function FC_onDirectoryReadSuccess(directoryList) {
-    console.log('img/FC/'+FC_now_q.toString()+'/ans/'+directoryList[0])
+	FC_Answer = directoryList[0].slice(-5,-4);
+    console.log('img/FC/'+FC_now_q.toString()+'/ans/'+directoryList[0]);
     $('#FC_Q_img').attr('src', 'img/FC/'+FC_now_q.toString()+'/que/'+directoryList[0]);
 	$('#FC_1_img').attr('src', 'img/FC/'+FC_now_q.toString()+'/opt/'+FC_myArray[0]);
 	$('#FC_2_img').attr('src', 'img/FC/'+FC_now_q.toString()+'/opt/'+FC_myArray[1]);

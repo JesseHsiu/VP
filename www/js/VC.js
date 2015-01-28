@@ -1,8 +1,12 @@
 // document.getElementById('tmp_test').addEventListener('click',this.haha('123'),false);
 var VC_now_q=1;
+var VC_Answer;
+var VC_time = new Date();
+var VC_starttime;
 $("#VC_Confirm_btn").css('display','none');
 
 $('#VC').on("pageshow",function(){
+	app.CreateFile("VC");
 	VC_next_Qusetion();
 });
 
@@ -27,6 +31,7 @@ function VC_next_Qusetion() {
 	{
 		$("#VC_Confirm_btn").css('display','none');
 		$('#VC_Option').css('display','none');
+		VC_starttime = VC_time.getTime();
 		window.plugins.directoryList.getList("www/img/VC/"+VC_now_q+"/que",VC_onDirectoryReadSuccess,VC_onDirectoryReadError);
 	}
 }
@@ -62,10 +67,18 @@ $('#VC_Confirm_btn').on("click", function() {
 function VC_check_option (element) {
 	// body...
 	console.log(element.src.slice(-5,-4));
-	$("#VC_Confirm_btn").css('display','block');
+
+	VC_time= new Date();
+	var Time_tmp = VC_time.getTime() - VC_starttime;
+	app.thingstowrite = (VC_Answer === element.src.slice(-5,-4)) +"," + Time_tmp + "," + element.src.slice(-5,-4)+"\n";
+	app.WriteFile();
+
+	VC_next_Qusetion();
+	// $("#VC_Confirm_btn").css('display','block');
 }
 
 function VC_onDirectoryReadSuccess(directoryList) {
+	VC_Answer = directoryList[0].slice(-5,-4);
     console.log('img/VC/'+VC_now_q.toString()+'/ans/'+directoryList[0])
     $('#VC_Q_img').attr('src', 'img/VC/'+VC_now_q.toString()+'/que/'+directoryList[0]);
 	$('#VC_1_img').attr('src', 'img/VC/'+VC_now_q.toString()+'/opt/'+VC_myArray[0]);

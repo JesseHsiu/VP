@@ -1,9 +1,12 @@
 var FG_ans= [];
 var FG_choosed_ans = [];
 var FG_now_Q = 1;
+var FG_time = new Date();
+var FG_starttime;
 
 var FG_myArray = ['1.png','2.png','3.png','4.png','5.png']
 $('#FG').on("pageshow",function(){
+	app.CreateFile("FG");
 	// window.plugins.directoryList.getList("www/img/FG/1/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
 	// window.plugins.directoryList.getList("www/img/FG/1/ans",FG_ans_onDirectoryReadSuccess,FG_ans_onDirectoryReadError);
 	FG_next_Qusetion();
@@ -35,7 +38,7 @@ function FG_next_Qusetion() {
 		$('#FG_5_img').attr('src', "img/FG/"+FG_now_Q+"/opt/"+FG_myArray[4]);
 
 
-
+		FG_starttime = FG_time.getTime();
 		$("#FG_Confirm_btn").css('display','none');
 		// window.plugins.directoryList.getList("www/img/FG/"+FG_now_Q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
 		// window.plugins.directoryList.getList("www/img/FG/"+FG_now_Q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
@@ -46,6 +49,27 @@ function FG_next_Qusetion() {
 
 
 $("#FG_Confirm_btn").click(function () {
+
+	FG_choosed_ans.length = 0;
+	$.each($(".FG_Imgs") , function (i, l) {
+		if($(this).attr("data-clickstate") === "true")
+		{
+			FG_choosed_ans.push($(this).attr("src").slice(-5,-4));
+		}		
+	});
+	
+	FG_choosed_ans = FG_choosed_ans.sort();
+
+	var is_same = FG_choosed_ans.length == FG_ans.length && FG_choosed_ans.every(function(element, index) {
+		    return element === FG_ans[index]; 
+		});
+
+	FG_time= new Date();
+	var Time_tmp = FG_time.getTime() - FG_starttime;
+
+	app.thingstowrite = (is_same) +"," + Time_tmp + "," + FG_choosed_ans+"\n";
+	app.WriteFile();
+
 	FG_next_Qusetion();
 })
 
@@ -145,24 +169,24 @@ function FG_check_option () {
 		}		
 	});
 	$("#FG_Confirm_btn").css("display","block");
-	FG_choosed_ans = FG_choosed_ans.sort();
+// 	FG_choosed_ans = FG_choosed_ans.sort();
 
-	var is_same = FG_choosed_ans.length == FG_ans.length && FG_choosed_ans.every(function(element, index) {
-		    return element === FG_ans[index]; 
-		});
+// 	var is_same = FG_choosed_ans.length == FG_ans.length && FG_choosed_ans.every(function(element, index) {
+// 		    return element === FG_ans[index]; 
+// 		});
 
-	console.log(FG_choosed_ans);
-	console.log(FG_ans);
+// 	console.log(FG_choosed_ans);
+// 	console.log(FG_ans);
 
-//element.src.slice(-5,-4) == FG_ans.slice(-5,-4)
-	if (is_same)
-	{
-		console.log("same");
-	}
-	else
-	{
-		console.log("not same");
-	}
+// //element.src.slice(-5,-4) == FG_ans.slice(-5,-4)
+// 	if (is_same)
+// 	{
+// 		console.log("same");
+// 	}
+// 	else
+// 	{
+// 		console.log("not same");
+// 	}
 }
 
 

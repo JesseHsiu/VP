@@ -1,8 +1,11 @@
 var chooseArray= [];
-var Ans_Array = ["2","4","8"];
-var SR_Qid = 1;
+var SR_Ans_Array = [["2","4","8"],["1","3","8"],["0","4","5"],["2","6","7"],["1","3","5","7"],["0","2","3","8"],["0","1","2","4","6"],["0","2","4","5","6"],["3"],["2","3"],["0","5"],["2","6","7"],["1","3","4"],["0","2","4","6","7"],["0","3","5","8"]];
+var SR_Qid = 0;
+var SR_time = new Date();
+var SR_starttime;
 
 $('#SR').on("pagebeforeshow",function(event, ui){
+	app.CreateFile("SR");
 	SR_NextQuestion();
 
 
@@ -39,8 +42,8 @@ $('#SR').on("pagebeforeshow",function(event, ui){
 			chooseArray.push($(this).attr('id').toString());
 		}
 		chooseArray = chooseArray.sort();
-		var is_same = chooseArray.length == Ans_Array.length && chooseArray.every(function(element, index) {
-		    return element === Ans_Array[index]; 
+		var is_same = chooseArray.length == SR_Ans_Array[SR_Qid-1].length && chooseArray.every(function(element, index) {
+		    return element === SR_Ans_Array[SR_Qid-1][index]; 
 		});
 
 		//show next Q
@@ -62,6 +65,7 @@ function SR_NextQuestion () {
 	else
 	{
 		chooseArray.length = 0;
+		SR_starttime = SR_time.getTime();
 		$("#NextQ").hide();
 		SR_clean();
 		window.plugins.directoryList.getList("www/img/SR",SR_onDirectoryReadSuccess,SR_onDirectoryReadError);
@@ -98,6 +102,19 @@ function SR_onDirectoryReadError(error) {
 
 
 $("#NextQ").click(function () {
+	console.log(chooseArray);
+	console.log(SR_Ans_Array[SR_Qid-1]);
+
+	chooseArray = chooseArray.sort();
+	var is_same = chooseArray.length == SR_Ans_Array[SR_Qid-1].length && chooseArray.every(function(element, index) {
+	    return element === SR_Ans_Array[SR_Qid-1][index]; 
+	});
+	
+	SR_time= new Date();
+	var Time_tmp = SR_time.getTime() - SR_starttime;
+	app.thingstowrite = is_same +"," + Time_tmp + "," + chooseArray+"\n";
+	app.WriteFile();
+
 	SR_NextQuestion();
 })
 
