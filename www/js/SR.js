@@ -101,7 +101,7 @@ function SR_onDirectoryReadSuccess(directoryList) {
     $('#SR_Grid').attr('text-align', 'center');
     $('#SR_Grid').width($(window).width()/3);
     $('#SR_Grid').height($(window).width()/3);
-    app.now_q++;
+    
 
 }
 
@@ -126,6 +126,7 @@ $("#NextQ").click(function () {
 	app.WriteFile();
 
 	SR_NextQuestion();
+	app.now_q++;
 })
 
 function SR_clean (argument) {
