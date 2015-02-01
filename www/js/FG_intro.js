@@ -5,8 +5,6 @@ $('#FG_intro').on("pageshow",function(){
 	window.plugins.directoryList.getList("www/img/FG/1/ans",FG_Intro_ans_onDirectoryReadSuccess,FG_Intro_ans_onDirectoryReadError);
 });
 
-// document.getElementById('tmp_test').addEventListener('click',this.haha('123'),false);
-
 var FG_Intro_myArray = ['1.png','2.png','3.png','4.png','5.png']
 FG_Intro_myArray.sort(function(){ return Math.random()-0.5; }); 
 

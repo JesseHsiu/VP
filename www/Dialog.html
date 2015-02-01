@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dialog</title>
+</head>
+<body>
+	<div id="Dialog" data-role="page">
+
+		<div data-role="header" role="banner"><a href="#" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-left" data-rel="back">Close</a>
+			<h1 class="ui-title" role="heading" aria-level="1">Helper</h1>
+		</div>
+
+		<div role="main" class="ui-content">
+			<h1>Need Help?</h1>
+			<button id="Reset_btn" class="ui-btn ui-shadow ui-corner-all ui-btn-a" data-rel="back">Restart</button>
+			<button id="BackToMain_btn" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Back To MainPage</button>
+		</div>
+
+
+		<script type="text/javascript">
+			$("#Reset_btn").click(function () {
+				app.now_q=2;
+				app.removeCurrentFile();
+				
+			});
+			$("#BackToMain_btn").click(function () {
+				app.removeCurrentFile();
+				$.mobile.pageContainer.pagecontainer('change', "VP_Panel.html", {
+				  transition: 'slidedown'
+				});
+			});
+
+		</script>
+	</div>
+</body>
+</html>
+
+

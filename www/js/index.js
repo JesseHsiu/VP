@@ -64,6 +64,8 @@ var app = {
     current_fileEntry: null,
     current_VMIdirEntry : null,
     thingstowrite: null,
+    now_q: null,
+    now_testname: null,
     // fileName : "",
     // Application Constructor
     initialize: function() {
@@ -169,6 +171,40 @@ var app = {
                 console.log("upload error code: " + error.code);
             }
         );
+    },
+    addHiddenBack: function () {
+        // $.mobile.activePage.attr('id');
+        $.mobile.activePage.append("<button id='MainBackButton'>     </button>");
+
+        $("#MainBackButton").css({
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            "background-color": 'transparent',
+            width : '40px',
+            height :'40px',
+            border: "none"
+        });
+        $("#MainBackButton").attr('data-role','none');
+        $("#MainBackButton").click(function () {
+            console.log("MainBackButtonClicked");
+            console.log($.mobile.activePage.attr('id'));
+            if ($.mobile.activePage.attr('id') == "VMI")
+            {
+                $.mobile.pageContainer.pagecontainer('change', "Dialog_VMI.html", { role: "dialog" } );
+            }
+            else
+            {
+                $.mobile.pageContainer.pagecontainer('change', "Dialog.html", { role: "dialog" } );
+            }
+            
+        });
+    },
+    removeCurrentFile:function  () {
+        app.current_fileEntry.remove(app.removeSuccess);
+    },
+    removeSuccess: function  () {
+        console.log("remove the current file");
     }
 };
 app.initialize();

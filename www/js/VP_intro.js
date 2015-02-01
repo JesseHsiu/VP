@@ -1,5 +1,3 @@
-// document.getElementById('tmp_test').addEventListener('click',this.haha('123'),false);
-
 var myArray = ['1.png','2.png','3.png','4.png','5.png']
 myArray.sort(function(){ return Math.random()-0.5; }); 
 
@@ -36,7 +34,6 @@ function VD_check_option (element) {
 
 	if (element.src.slice(-5,-4) == '1')
 	{
-		// $('#VP_1_intro_right').addClass('animated bounceOutLeft');
 		document.getElementById("VP_1_intro_right").style.display="block";
 		document.getElementById("VP_1_intro_Next").style.display="block";
 		document.getElementById("VP_1_intro_wrong").style.display="none";

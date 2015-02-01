@@ -1,11 +1,21 @@
 var FG_ans= [];
 var FG_choosed_ans = [];
-var FG_now_Q = 1;
 var FG_time = new Date();
 var FG_starttime;
 
 var FG_myArray = ['1.png','2.png','3.png','4.png','5.png']
 $('#FG').on("pageshow",function(){
+
+	if (app.now_testname !="FG")
+	{
+		app.now_q=1;
+		app.now_testname="FG";
+	}
+	else
+	{
+		app.now_q--;
+	}
+	app.addHiddenBack();
 	app.CreateFile("FG");
 	// window.plugins.directoryList.getList("www/img/FG/1/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
 	// window.plugins.directoryList.getList("www/img/FG/1/ans",FG_ans_onDirectoryReadSuccess,FG_ans_onDirectoryReadError);
@@ -17,7 +27,7 @@ $('#FG').on("pageshow",function(){
 
 function FG_next_Qusetion() {
 
-	if (FG_now_Q==9)
+	if (app.now_q==9)
 	{
 		// $.mobile.changePage("Section_endPage.html", "slideup");
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
@@ -26,24 +36,25 @@ function FG_next_Qusetion() {
 	}
 	else
 	{
+		
 		FG_myArray.sort(function(){ return Math.random()-0.5; });
-		$('#FG_Q_img').attr('src', 'img/FG/'+FG_now_Q+'/que/0.png');
-		$('#FG_1_img').attr('src', "img/FG/"+FG_now_Q+"/opt/"+FG_myArray[0]);
+		$('#FG_Q_img').attr('src', 'img/FG/'+app.now_q+'/que/0.png');
+		$('#FG_1_img').attr('src', "img/FG/"+app.now_q+"/opt/"+FG_myArray[0]);
 		$('.FG_Imgs').attr('data-clickstate', 'false');
 		$('.FG_Imgs').css("background-color","");
 		
-		$('#FG_2_img').attr('src', "img/FG/"+FG_now_Q+"/opt/"+FG_myArray[1]);
-		$('#FG_3_img').attr('src', "img/FG/"+FG_now_Q+"/opt/"+FG_myArray[2]);
-		$('#FG_4_img').attr('src', "img/FG/"+FG_now_Q+"/opt/"+FG_myArray[3]);
-		$('#FG_5_img').attr('src', "img/FG/"+FG_now_Q+"/opt/"+FG_myArray[4]);
+		$('#FG_2_img').attr('src', "img/FG/"+app.now_q+"/opt/"+FG_myArray[1]);
+		$('#FG_3_img').attr('src', "img/FG/"+app.now_q+"/opt/"+FG_myArray[2]);
+		$('#FG_4_img').attr('src', "img/FG/"+app.now_q+"/opt/"+FG_myArray[3]);
+		$('#FG_5_img').attr('src', "img/FG/"+app.now_q+"/opt/"+FG_myArray[4]);
 
 
 		FG_starttime = FG_time.getTime();
 		$("#FG_Confirm_btn").css('display','none');
-		// window.plugins.directoryList.getList("www/img/FG/"+FG_now_Q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
-		// window.plugins.directoryList.getList("www/img/FG/"+FG_now_Q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
-		window.plugins.directoryList.getList("www/img/FG/"+FG_now_Q+"/ans",FG_ans_onDirectoryReadSuccess,FG_ans_onDirectoryReadError);
-		FG_now_Q++;
+		// window.plugins.directoryList.getList("www/img/FG/"+app.now_q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
+		// window.plugins.directoryList.getList("www/img/FG/"+app.now_q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
+		window.plugins.directoryList.getList("www/img/FG/"+app.now_q+"/ans",FG_ans_onDirectoryReadSuccess,FG_ans_onDirectoryReadError);
+		app.now_q++;
 	}
 }
 
@@ -192,7 +203,7 @@ function FG_check_option () {
 
 // function FG_onDirectoryReadSuccess(directoryList) {
 //     // console.log('img/FG/1/que/'+directoryList[0]);
-//     $('#FG_Q_img').attr('src', 'img/FG/'+FG_now_Q+'/que/0.png');
+//     $('#FG_Q_img').attr('src', 'img/FG/'+app.now_q+'/que/0.png');
 // }
 
 // onError Callback if directory does not exists or it is empty
