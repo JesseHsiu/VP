@@ -4,6 +4,8 @@ var ctx, color = "#000";
 
 $('#VMI').on("pageshow",function(){
 	console.log("pageshow");
+	app.CreateFolder("VMI");
+
 	$('#Draw_section').height($('#VMI_div_Q').width());
 	$('#Draw_section').width($('#VMI_div_Q').width());
 
@@ -39,6 +41,12 @@ function next_question () {
 	}
 	else
 	{
+
+		var canvas = document.getElementById("canvas");
+		var img = canvas.toDataURL("image/tiff");
+		app.thingstowrite = img;
+		app.saveVMIImg(now_q-1);
+
 		$('#VMI_Q_img').attr('src', 'img/VMI/'+now_q.toString()+'.png');
 		newCanvas();
 		now_q++;

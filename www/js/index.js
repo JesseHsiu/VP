@@ -62,6 +62,7 @@ var app = {
     current_userinfo: null,
     current_dirEntry: null,
     current_fileEntry: null,
+    current_VMIdirEntry : null,
     thingstowrite: null,
     // fileName : "",
     // Application Constructor
@@ -134,6 +135,9 @@ var app = {
     CreateFile: function (name) {
        app.current_dirEntry.getFile(name+".csv", {create: true, exclusive: true}, app.FileToWrite);
     },
+    CreateFolder: function (name) {
+       app.current_dirEntry.getDirectory(name, {create: true, exclusive: false}, app.createVMISuccess, app.createUserFail);
+    },
     FileToWrite: function  (fileEntry) {
         app.current_fileEntry = fileEntry;
         // fileEntry.createWriter(app.gotUserInfoFileWriter, app.onFSError);
@@ -147,6 +151,24 @@ var app = {
         };
         writer.seek(writer.length);
         writer.write(app.thingstowrite);
+    },
+    createVMISuccess: function  (dirEntry) {
+        app.current_VMIdirEntry = dirEntry;
+    },
+    saveVMIImg: function (number) {
+        var fileTransfer = new FileTransfer();
+        fileTransfer.download(
+            app.thingstowrite,
+            app.fs.root.toURI()+'/'+app.current_userinfo.id+"/VMI/"+number+".tiff",
+            function(theFile) {
+                console.log("download complete: " + theFile.toURI());
+            },
+            function(error) {
+                console.log("download error source " + error.source);
+                console.log("download error target " + error.target);
+                console.log("upload error code: " + error.code);
+            }
+        );
     }
 };
 app.initialize();
