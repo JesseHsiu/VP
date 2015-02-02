@@ -4,6 +4,16 @@ var Ans_Array = ["2","4","8"];
 
 $('#SR_intro').on("pagebeforeshow",function(){
 	window.plugins.directoryList.getList("www/img/SR",SR_Intro_onDirectoryReadSuccess,SR_Intro_onDirectoryReadError);
+	if (app.current_userinfo.right_left_hand == "right")
+    {
+        $("#SR_intro_lefthand").append("<img id='SR_intro_Q_img'>");
+        $("#SR_intro_righthand").append("<div id='Answer_container_intro'><img id='SR_intro_Grid'></div>");
+    }
+    else
+    {
+        $("#SR_intro_lefthand").append("<div id='Answer_container_intro'><img id='SR_intro_Grid'></div>");
+        $("#SR_intro_righthand").append("<img id='SR_intro_Q_img'>");
+    }
 });
 
 

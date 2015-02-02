@@ -5,6 +5,17 @@ var SR_time = new Date();
 var SR_starttime;
 
 $('#SR').on("pagebeforeshow",function(event, ui){
+	if (app.current_userinfo.right_left_hand == "right")
+    {
+        $("#SR_lefthand").append("<img id='SR_Q_img'>");
+        $("#SR_righthand").append("<div id='Answer_container'><img id='SR_Grid'></div>");
+    }
+    else
+    {
+        $("#SR_lefthand").append("<div id='Answer_container'><img id='SR_Grid'></div>");
+        $("#SR_righthand").append("<img id='SR_Q_img'>");
+    }
+
 	if (app.now_testname !="SR")
 	{
 		app.now_q=1;

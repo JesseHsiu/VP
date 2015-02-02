@@ -14,14 +14,37 @@
         <!-- <div data-role="content" class="page_content"> -->
         <div class="page_content">
             <fieldset class="ui-grid-b ui-responsive">
-                <div class="col-sm-4"><a href="FiveDraw.html" class="ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">五角形</p></a>
+                <div class="col-sm-3"><a id="circle" href="CircleDraw.html" class="test_class ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">圓形</p></a>
                 </div>
-                <div class="col-sm-4"><a href="StarDraw.html" class="ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">星形</p></a>
+                <div class="col-sm-3"><a id="five" href="FiveDraw.html" class="test_class ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">五角形</p></a>
                 </div>
-                <div class="col-sm-4"><a href="ComplexDraw.html" class="ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">複雜形</p></a>
+                <div class="col-sm-3"><a id="star" href="StarDraw.html" class="test_class ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">星形</p></a>
+                </div>
+                <div class="col-sm-3"><a id="complex" href="ComplexDraw.html" class="test_class ui-btn ui-corner-all" data-transition="slidefade"><p class="Choose_link">複雜形</p></a>
                 </div>
             </fieldset>
         </div>
+        <script type="text/javascript">
+            $('#MIPanel').on("pageshow",function(){
+                var flag = true;
+                $(".test_class").each(function(index, el) {
+                    var tmp_String = $(this).attr('id').toString();
+                    console.log(tmp_String+":"+ app.Tests_finished[tmp_String]);
+                    if (app.Tests_finished[tmp_String] === true)
+                    {
+                        $(this).addClass("ui-state-disabled");
+                    }
+                    else
+                    {
+                        flag =false;
+                    }
+                });
+                if (flag)
+                {
+                    app.Tests_finished.MI = true;
+                };
+            });
+        </script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     </div>
 </body>

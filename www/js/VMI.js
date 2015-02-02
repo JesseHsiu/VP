@@ -59,7 +59,7 @@ function newCanvas(){
     // setup canvas
 	ctx=document.getElementById("canvas").getContext("2d");
 	ctx.strokeStyle = color;
-	ctx.lineWidth = 5;	
+	ctx.lineWidth = 5;
 	
 	// setup to trigger drawing on mouse or touch
 	$("#canvas").drawTouch();
@@ -90,12 +90,11 @@ $.fn.drawTouch = function() {
 }; 
 
 $('#Next_btn').on("click", function() {
-	next_question();
-	document.getElementById("Next_btn").style.display="none";
-
 	var canvas = document.getElementById("canvas");
 	var img = canvas.toDataURL("image/tiff");
 	app.thingstowrite = img;
 	app.saveVMIImg(app.now_q-1);
-	// document.getElementById("VP_Confirm_btn").style.display="none";
+
+	next_question();
+	document.getElementById("Next_btn").style.display="none";
 });
