@@ -31,19 +31,20 @@
 
         </div>
         <script type="text/javascript">
-    	var glide2 = $('#slider_VMI').glide({
-            autoplay: false,
-            circular: false,
-            arrowRightText: '',
-            arrowLeftText: '',
-            afterTransition: function() {
-                // console.log("haha");
-                if (glide2.current() == 3) {
-                    // console.log("true");
-                    $('#start_btn').removeClass('ui-disabled');
-                } else {}
-            }
-        }).data('api_glide');
+            $('#VMI_slide').on("pageshow",function(){
+                var glide2 = $('#slider_VMI').glide({
+                autoplay: false,
+                circular: false,
+                arrowRightText: '',
+                arrowLeftText: '',
+                afterTransition: function() {
+                    if (glide2.current() == 3) {
+                        $('#start_btn').removeClass('ui-disabled');
+                    } else {}
+                }
+            }).data('api_glide');
+        });
+    	
     </script>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     </div>

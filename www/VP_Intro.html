@@ -32,19 +32,20 @@
 
         </div>
         <script type="text/javascript">
-    	var glide2 = $('#slider_VP').glide({
-            autoplay: false,
-            circular: false,
-            arrowRightText: '',
-            arrowLeftText: '',
-            afterTransition: function() {
-                console.log("haha");
-                if (glide2.current() == 4) {
-                    console.log("true");
-                    $('#VP_start_btn').removeClass('ui-disabled');
-                } else {}
-            }
-        }).data('api_glide');
+        $('#VP_Intro').on("pageshow",function(){
+            var glide2 = $('#slider_VP').glide({
+                autoplay: false,
+                circular: false,
+                arrowRightText: '',
+                arrowLeftText: '',
+                afterTransition: function() {
+                    if (glide2.current() == 4) {
+                        $('#VP_start_btn').removeClass('ui-disabled');
+                    } else {}
+                }
+            }).data('api_glide');
+        });
+    	
         </script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     </div>
