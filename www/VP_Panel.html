@@ -14,25 +14,46 @@
         <div class="container-fluid" data-role="content">
             <!-- <fieldset id="select2" class="VP_select ui-grid-b ui-responsive"> -->
             <div class="row VPPanel_row" >
-                <div class="col-sm-3 col-sm-offset-2"><a href="VP_1_intro.html" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺區辨</p></a>
+                <div class="col-sm-3 col-sm-offset-2"><a id="VD" href="VP_1_intro.html" class="test_class ui-btn ui-corner-all"><p class="VP_Panel_link">視覺區辨</p></a>
                 </div>
-                <div class="col-sm-3"><a href="VM_intro.html" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺記憶</p></a>
+                <div class="col-sm-3"><a id="VM" href="VM_intro.html" class="test_class ui-btn ui-corner-all"><p class="VP_Panel_link">視覺記憶</p></a>
                 </div>
-                <div class="col-sm-3"><a href="SR_intro.html" class="ui-btn ui-corner-all"><p class="VP_Panel_link">空間概念</p></a>
+                <div class="col-sm-3"><a id="SR" href="SR_intro.html" class="test_class ui-btn ui-corner-all"><p class="VP_Panel_link">空間概念</p></a>
                 </div>
             </div>
             <!-- </fieldset> -->
             <!-- <fieldset id="select3" class="VP_select ui-grid-c ui-responsive"> -->
             <div class="row VPPanel_row">
-                <div class="col-sm-3 col-sm-offset-2"><a href="FC_intro.html" class="ui-btn ui-corner-all "><p class="VP_Panel_link">形狀恆常</p></a>
+                <div class="col-sm-3 col-sm-offset-2"><a id="FC" href="FC_intro.html" class="test_class ui-btn ui-corner-all "><p class="VP_Panel_link">形狀恆常</p></a>
                 </div>
-                <div class="col-sm-3"><a href="FG_intro.html" class="ui-btn ui-corner-all"><p class="VP_Panel_link">前景背景</p></a>
+                <div class="col-sm-3"><a id="FG" href="FG_intro.html" class="test_class ui-btn ui-corner-all"><p class="VP_Panel_link">前景背景</p></a>
                 </div>
-                <div class="col-sm-3"><a href="VC_intro.html" class="ui-btn ui-corner-all"><p class="VP_Panel_link">視覺完形</p></a>
+                <div class="col-sm-3"><a id="VC" href="VC_intro.html" class="test_class ui-btn ui-corner-all"><p class="VP_Panel_link">視覺完形</p></a>
                 </div>
             </div>
             <!-- </fieldset> -->
         </div>
+        <script type="text/javascript">
+            $('#VP_Panel').on("pageshow",function(){
+                var flag = true;
+                $(".test_class").each(function(index, el) {
+                    var tmp_String = $(this).attr('id').toString();
+                    console.log(tmp_String+":"+ app.Tests_finished[tmp_String]);
+                    if (app.Tests_finished[tmp_String] === true)
+                    {
+                        $(this).addClass("ui-state-disabled");
+                    }
+                    else
+                    {
+                        flag =false;
+                    }
+                });
+                if (flag)
+                {
+                    app.Tests_finished.VP = true;
+                };
+            });
+        </script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     </div>
     <!-- VP Panel end-->

@@ -25,6 +25,7 @@ var myArray = ['1.png','2.png','3.png','4.png','5.png']
 function VD_next_Qusetion() {
 	if (app.now_q==16)
 	{
+		app.Tests_finished.VD = true;
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'
 		});

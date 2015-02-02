@@ -33,6 +33,7 @@ function VM_next_Qusetion() {
 
 	if (app.now_q==16)
 	{
+		app.Tests_finished.VM = true;
 		// $.mobile.changePage("Section_endPage.html", "slideup");
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'

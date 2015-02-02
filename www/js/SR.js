@@ -67,6 +67,7 @@ function SR_NextQuestion () {
 	// console.log(app.now_q);
 	if(app.now_q==15)
 	{
+		app.Tests_finished.SR = true;
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'
 		});

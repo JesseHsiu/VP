@@ -18,38 +18,30 @@ $('#VMI').on("pageshow",function(){
 	$('#Draw_section').width($('#VMI_div_Q').width());
 	$('#content').height($('#VMI_div_Q').width());
 	$('#content').width($('#VMI_div_Q').width());
-});
-
-
-$(document).ready(function () {
 	next_question();
 });
 
+
 function next_question () {
 	// setup a new canvas for drawing wait for device init
-	if (app.now_q==1)
+	// if (app.now_q==1)
+	// {
+	// 	$('#VMI_Q_img').attr('src', 'img/VMI/'+app.now_q+'.png');
+	// 	setTimeout(function(){
+	// 	   newCanvas();
+	//     }, 1000);
+	//     app.now_q++;
+	// }
+	if(app.now_q==19)
 	{
-		$('#VMI_Q_img').attr('src', 'img/VMI/'+app.now_q.toString()+'.png');
-		setTimeout(function(){
-		   newCanvas();
-	    }, 1000);
-	    app.now_q++;
-	}
-	else if(app.now_q==19)
-	{
+		app.Tests_finished.VMI = true;
 		$.mobile.pageContainer.pagecontainer('change', "VMI_endPage.html", {
 		  transition: 'flow'
 		});
 	}
 	else
 	{
-
-		var canvas = document.getElementById("canvas");
-		var img = canvas.toDataURL("image/tiff");
-		app.thingstowrite = img;
-		app.saveVMIImg(app.now_q-1);
-
-		$('#VMI_Q_img').attr('src', 'img/VMI/'+app.now_q.toString()+'.png');
+		$('#VMI_Q_img').attr('src', 'img/VMI/'+app.now_q+'.png');
 		newCanvas();
 		app.now_q++;
 	}
@@ -100,5 +92,10 @@ $.fn.drawTouch = function() {
 $('#Next_btn').on("click", function() {
 	next_question();
 	document.getElementById("Next_btn").style.display="none";
+
+	var canvas = document.getElementById("canvas");
+	var img = canvas.toDataURL("image/tiff");
+	app.thingstowrite = img;
+	app.saveVMIImg(app.now_q-1);
 	// document.getElementById("VP_Confirm_btn").style.display="none";
 });

@@ -29,6 +29,7 @@ function FG_next_Qusetion() {
 
 	if (app.now_q==9)
 	{
+		app.Tests_finished.FG = true;
 		// $.mobile.changePage("Section_endPage.html", "slideup");
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'

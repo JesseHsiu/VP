@@ -55,7 +55,6 @@
         // });​
 
 // document.addEventListener("deviceready", onDeviceReady_File, false); 
-
 var app = {
 
     fs: null,
@@ -66,6 +65,7 @@ var app = {
     thingstowrite: null,
     now_q: null,
     now_testname: null,
+    Tests_finished: null,
     // fileName : "",
     // Application Constructor
     initialize: function() {

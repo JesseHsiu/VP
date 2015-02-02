@@ -38,6 +38,7 @@
         
         <script type="text/javascript">
         $('#register').on("pageshow",function(){
+            app.Tests_finished = { VMI:false,MI:false,VP:false,VD: false,VM: false,SR: false,FC: false,FG: false,VC: false,VMI:false};
             var glide = $('#slider_Start').glide({
                 autoplay: false,
                 circular: false,
@@ -45,7 +46,6 @@
                 arrowLeftText: '',
                 afterTransition: function() {
                     if (glide.current() == 4) {
-                        console.log("true");
                         $('#btn_start').removeClass('ui-disabled');
                     } else {}
                 }
