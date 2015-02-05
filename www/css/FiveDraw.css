@@ -8,3 +8,10 @@
   margin-right: 2%;
   margin-left: 2%;
 }
+
+.Draw_next
+{
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+}

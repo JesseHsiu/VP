@@ -23,7 +23,10 @@ $('#SR').on("pagebeforeshow",function(event, ui){
 	}
 	else
 	{
-		app.now_q--;
+		if (app.now_q!=1)
+		{
+			app.now_q--;
+		};
 	}
 	app.addHiddenBack();
 	app.CreateFile("SR");

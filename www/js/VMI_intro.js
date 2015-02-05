@@ -8,37 +8,9 @@ $('#VMI_intro').on("pageshow",function(){
 
 	$('#content').height($("#VMI_Intro_div_Q").width());
 	$('#content').width($("#VMI_Intro_div_Q").width());
-
-	// $("#canvas").css("background-color","yellow");
-});
-
-
-$(document).ready(function () {
 	$('#VMI_Intro_Q_img').attr('src', 'img/VMI/1.png');
-
-
-	
-
-	// setup a new canvas for drawing wait for device init
-    setTimeout(function(){
-	   newCanvas();
-    }, 1000);
-		
-	// reset palette selection (css) and select the clicked color for canvas strokeStyle
-	// $(".palette").click(function(){
-	// 	$(".palette").css("border-color", "#777");
-	// 	$(".palette").css("border-style", "solid");
-	// 	$(this).css("border-color", "#fff");
-	// 	$(this).css("border-style", "dashed");
-	// 	color = $(this).css("background-color");
-	// 	ctx.beginPath();
-	// 	ctx.strokeStyle = color;
-	// });
-    
-	// // link the new button with newCanvas() function
-	// $("#new").click(function() {
-	// 	newCanvas();
-	// });
+	newCanvas();
+	// $("#canvas").css("background-color","yellow");
 });
 
 // function to setup a new canvas for drawing

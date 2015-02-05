@@ -13,7 +13,10 @@ $('#VP_1').on("pageshow",function(){
 	}
 	else
 	{
-		app.now_q--;
+		if (app.now_q!=1)
+		{
+			app.now_q--;
+		};
 	}
 	app.addHiddenBack();
 	app.CreateFile("VD");
