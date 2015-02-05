@@ -8,6 +8,7 @@ var drawed = false;
 // var error_media = new Media("other/beep.wav");
 
 $('#FiveDraw').on("pageshow",function(){
+	RMSE.initialize();
 	app.CreateFile("FD");
 	app.addHiddenBack();
 	if (app.now_testname !="FD")
@@ -62,8 +63,13 @@ $.fn.drawTouch = function(ctx) {
 		}
 		FD_time= new Date();
 		var Time_tmp = FD_time.getTime() - FD_starttime;
-		app.thingstowrite = app.thingstowrite + app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+"\n";
-		
+
+
+		//RMSE
+		RMSE.calculate_D(x,y);
+		var tmp_RMSE = Math.sqrt(RMSE.now_distance/RMSE.touch_count);
+		app.thingstowrite = app.thingstowrite + app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE+"\n";
+		RMSE.touch_count++;
 
 	};
 	var end = function (e) {
@@ -150,6 +156,86 @@ function newCanvas(){
 
 $("#FiveDraw_Confirm_btn").click(function  () {
 	app.now_q++;
+	RMSE.initialize();
+	error_times =0;
+	drawed = false;
 	FD_next_question();
 	$(this).hide();
-})
+});
+
+
+
+var RMSE = {
+
+	now_distance: null,
+	middle_line_array:null,
+	touch_count: null,
+	initialize:function () {
+		RMSE.now_distance = 0;
+		RMSE.touch_count =1;
+		RMSE.middle_line_array=[];
+		for(var i = 0 ; i < outer_points.length; i++)
+		{
+			RMSE.middle_line_array.push([(inner_points[i][0]+outer_points[i][0])/2,(inner_points[i][1]+outer_points[i][1])/2]);
+		}
+	},
+	calculate_D:function (X,Y) {
+		var tmp_small = 0;
+		for(var i = 0 ; i < RMSE.middle_line_array.length; i++)
+		{	
+			if (i === RMSE.middle_line_array.length-1)
+			{
+				now_value = RMSE.distance(RMSE.middle_line_array[i][0],RMSE.middle_line_array[i][1],RMSE.middle_line_array[0][0],RMSE.middle_line_array[0][1],X,Y);
+			}else{
+				now_value = RMSE.distance(RMSE.middle_line_array[i][0],RMSE.middle_line_array[i][1],RMSE.middle_line_array[i+1][0],RMSE.middle_line_array[i+1][1],X,Y);
+			}
+			
+			if (tmp_small ===0)
+			{
+				tmp_small = now_value;
+			}else if (tmp_small > now_value)
+			{
+				tmp_small = now_value;
+			};
+		}
+
+		RMSE.now_distance = RMSE.now_distance + tmp_small;
+	},
+
+	distance: function  (x1,y1,x2,y2,pointX,pointY) {
+		var diffX = x2 - x1;
+	    var diffY = y2 - y1;
+	    if ((diffX == 0) && (diffY == 0))
+	    {
+	        diffX = pointX - x1;
+	        diffY = pointY - y1;
+	        return diffX * diffX + diffY * diffY;
+	    }
+	    
+	    var t = ((pointX - x1) * diffX + (pointY - y1) * diffY) / (diffX * diffX + diffY * diffY);
+	    
+	    if (t < 0)
+	    {
+	        //point is nearest to the first point i.e x1 and y1
+	        diffX = pointX - x1;
+	        diffY = pointY - y1;
+	    }
+	    else if (t > 1)
+	    {
+	        //point is nearest to the end point i.e x2 and y2
+	        diffX = pointX - x2;
+	        diffY = pointY - y2;
+	    }
+	    else
+	    {
+	        //if perpendicular line intersect the line segment.
+	        diffX = pointX - (x1 + t * diffX);
+	        diffY = pointY - (y1 + t * diffY);
+	    }
+	    
+	    //returning shortest distance
+	    return diffX * diffX + diffY * diffY;
+	}
+
+};
+
