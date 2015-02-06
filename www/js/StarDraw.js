@@ -30,6 +30,7 @@ $('#StarDraw').on("pageshow",function(){
 
 $.fn.drawTouch = function(ctx) {
 	var start = function(e) {
+		$(".circle-text").hide();
 		if (drawed === false)
 		{
 			SD_time = new Date();
@@ -74,6 +75,7 @@ $.fn.drawTouch = function(ctx) {
 
 	};
 	var end = function (e) {
+		$(".circle-text").show();
 		$("#StarDraw_Confirm_btn").show();
 	}
 	$(this).on("touchstart", start);

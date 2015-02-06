@@ -29,6 +29,7 @@ $('#FiveDraw').on("pageshow",function(){
 
 $.fn.drawTouch = function(ctx) {
 	var start = function(e) {
+		$(".circle-text").hide();
 		if (drawed === false)
 		{
 			FD_time = new Date();
@@ -73,6 +74,7 @@ $.fn.drawTouch = function(ctx) {
 
 	};
 	var end = function (e) {
+		$(".circle-text").show();
 		$("#FiveDraw_Confirm_btn").show();
 	}
 	$(this).on("touchstart", start);
