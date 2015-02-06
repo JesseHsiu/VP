@@ -193,6 +193,10 @@ var app = {
             {
                 $.mobile.pageContainer.pagecontainer('change', "Dialog_VMI.html", { role: "dialog" } );
             }
+            else if ($.mobile.activePage.attr('id')== "StarDraw" || $.mobile.activePage.attr('id')== "FiveDraw" || $.mobile.activePage.attr('id')== "ComplexDraw")
+            {
+                $.mobile.pageContainer.pagecontainer('change', "Dialog_MI.html", { role: "dialog" } );
+            }
             else
             {
                 $.mobile.pageContainer.pagecontainer('change', "Dialog.html", { role: "dialog" } );

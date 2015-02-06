@@ -73,7 +73,6 @@ $.fn.drawTouch = function(ctx) {
 
 	};
 	var end = function (e) {
-		app.WriteFile();
 		$("#FiveDraw_Confirm_btn").show();
 	}
 	$(this).on("touchstart", start);
@@ -155,6 +154,7 @@ function newCanvas(){
 
 
 $("#FiveDraw_Confirm_btn").click(function  () {
+	app.WriteFile();
 	app.now_q++;
 	RMSE.initialize();
 	error_times =0;

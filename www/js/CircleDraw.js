@@ -1,21 +1,20 @@
-var inner_points = [[559.596966,318.488397],[713.623981,318.488397],[589.013508,409.023206],[636.610474,555.511603],[512.000000,464.927466],[387.389527,555.511603],[434.986492,409.023206],[310.376019,318.488397],[464.403034,318.488397],[512.000000,172.000000]];
-var outer_points = [[590.579896,275.844052],[844.869781,275.844052],[639.144942,425.311896],[717.724838,667.155948],[512.000000,517.606665],[306.275162,667.155948],[384.855058,425.311896],[179.130219,275.844052],[433.420104,275.844052],[512.000000,34.000000]];
-
+// var inner_points = [[512.000000,87.000000],[794.463806,292.221954],[686.572205,624.278076],[337.427765,624.278076],[229.536209,292.221954]];
+// var outer_points = [[844.869751,275.844055],[717.724854,667.155945],[306.275146,667.155945],[179.130219,275.844055],[512.000000,34.000000]];
 var nowDrawState = false;
-var SD_time;
-var SD_starttime;
+var CircleD_time;
+var CircleD_starttime;
 var error_times =0;
 var drawed = false;
 // var error_media = new Media("other/beep.wav");
 
-$('#StarDraw').on("pageshow",function(){
+$('#CircleDraw').on("pageshow",function(){
 	RMSE.initialize();
-	app.CreateFile("SD");
+	app.CreateFile("CircleD");
 	app.addHiddenBack();
-	if (app.now_testname !="SD")
+	if (app.now_testname !="CircleD")
 	{
 		app.now_q=1;
-		app.now_testname="SD";
+		app.now_testname="CircleD";
 	}
 	else
 	{
@@ -24,16 +23,16 @@ $('#StarDraw').on("pageshow",function(){
 			app.now_q--;
 		};
 	}
-	$("#StarDraw_Confirm_btn").hide();
-	SD_next_question();
+	$("#CircleDraw_Confirm_btn").hide();
+	CircleD_next_question();
 });
 
 $.fn.drawTouch = function(ctx) {
 	var start = function(e) {
 		if (drawed === false)
 		{
-			SD_time = new Date();
-			SD_starttime = SD_time.getTime();	
+			CircleD_time = new Date();
+			CircleD_starttime = CircleD_time.getTime();	
 			drawed = true;
 		};
 
@@ -62,8 +61,8 @@ $.fn.drawTouch = function(ctx) {
 			};
 			nowDrawState = false;
 		}
-		SD_time= new Date();
-		var Time_tmp = SD_time.getTime() - SD_starttime;
+		CircleD_time= new Date();
+		var Time_tmp = CircleD_time.getTime() - CircleD_starttime;
 
 
 		//RMSE
@@ -74,7 +73,7 @@ $.fn.drawTouch = function(ctx) {
 
 	};
 	var end = function (e) {
-		$("#StarDraw_Confirm_btn").show();
+		$("#CircleDraw_Confirm_btn").show();
 	}
 	$(this).on("touchstart", start);
 	$(this).on("touchmove", move);	
@@ -85,9 +84,22 @@ $.fn.drawTouch = function(ctx) {
 }; 
 //out point
 
-function inTheSection(x,y)
+function inTheSection(dX1,dY1)
 {
-	return pnpoly(outer_points,x,y) && !pnpoly(inner_points,x,y);
+
+	//distance
+	var tmp_distance = Math.sqrt((dX1 - 512)*(dX1 - 512) + (dY1 - 370)*(dY1 - 370));
+
+	if (tmp_distance >340 || tmp_distance<300) {
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+
+
+	//return pnpoly(outer_points,x,y) && !pnpoly(inner_points,x,y);
 }
 
 function pnpoly (Point_array,testx, testy) {
@@ -104,10 +116,10 @@ function pnpoly (Point_array,testx, testy) {
 	return c;
 }
 
-function SD_next_question () {
+function CircleD_next_question () {
 	if(app.now_q==4)
 	{
-		app.Tests_finished.star = true;
+		app.Tests_finished.circle = true;
 		$.mobile.pageContainer.pagecontainer('change', "MI_endPage.html", {
 		  transition: 'flow'
 		});
@@ -119,7 +131,7 @@ function SD_next_question () {
 }
 
 function newCanvas(){
-	var canvas = document.getElementById('Star_Canvas');
+	var canvas = document.getElementById('Circle_Canvas');
     var context = canvas.getContext('2d');
     app.thingstowrite = "";
 
@@ -128,39 +140,49 @@ function newCanvas(){
 	context.lineWidth = 5;	
 	
 	// setup to trigger drawing on mouse or touch
-	context.beginPath();
-	context.moveTo(512.000000,34.000000);
-	for(var i = 0 ; i < outer_points.length; i++)
-	{
-		context.lineTo(outer_points[i][0],outer_points[i][1]);		
-	}
+	// context.beginPath();
+	// context.moveTo(512.000000,34.000000);
+	// for(var i = 0 ; i < outer_points.length; i++)
+	// {
+	// 	context.lineTo(outer_points[i][0],outer_points[i][1]);		
+	// }
 
-	context.lineJoin = 'round';
+	// context.lineJoin = 'round';
+	// context.stroke();
+
+
+	// context.beginPath();
+	// context.moveTo(229.536209,292.221954);
+	// for(var i = 0 ; i < inner_points.length; i ++)
+	// {
+	// 	context.lineTo(inner_points[i][0],inner_points[i][1]);
+	// }
+	// context.lineJoin = 'round';
+	// context.stroke();
+
+
+	context.beginPath();
+	context.arc(512,370,300,0,2*Math.PI);
+	context.stroke();
+
+	context.beginPath();
+	context.arc(512,370,340,0,2*Math.PI);
 	context.stroke();
 
 
-	context.beginPath();
-	context.moveTo(512.000000,172.000000);
-	for(var i = 0 ; i < inner_points.length; i ++)
-	{
-		context.lineTo(inner_points[i][0],inner_points[i][1]);
-	}
-	context.lineJoin = 'round';
-	context.stroke();
-
-	$("#Star_Canvas").drawTouch(context);
+	$("#Circle_Canvas").drawTouch(context);
 	context.strokeStyle = "#000";
 	context.lineWidth = 2;
 }
 
 
-$("#StarDraw_Confirm_btn").click(function  () {
+$("#CircleDraw_Confirm_btn").click(function  () {
 	app.WriteFile();
 	app.now_q++;
 	RMSE.initialize();
 	error_times =0;
 	drawed = false;
-	SD_next_question();
+	CircleD_next_question();
 	$(this).hide();
 });
 
@@ -174,33 +196,45 @@ var RMSE = {
 	initialize:function () {
 		RMSE.now_distance = 0;
 		RMSE.touch_count =1;
-		RMSE.middle_line_array=[];
-		for(var i = 0 ; i < outer_points.length; i++)
-		{
-			RMSE.middle_line_array.push([(inner_points[i][0]+outer_points[i][0])/2,(inner_points[i][1]+outer_points[i][1])/2]);
-		}
+		// RMSE.middle_line_array=[];
+		// for(var i = 0 ; i < outer_points.length; i++)
+		// {
+		// 	RMSE.middle_line_array.push([(inner_points[i][0]+outer_points[i][0])/2,(inner_points[i][1]+outer_points[i][1])/2]);
+		// }
 	},
-	calculate_D:function (X,Y) {
-		var tmp_small = 0;
-		for(var i = 0 ; i < RMSE.middle_line_array.length; i++)
-		{	
-			if (i === RMSE.middle_line_array.length-1)
-			{
-				now_value = RMSE.distance(RMSE.middle_line_array[i][0],RMSE.middle_line_array[i][1],RMSE.middle_line_array[0][0],RMSE.middle_line_array[0][1],X,Y);
-			}else{
-				now_value = RMSE.distance(RMSE.middle_line_array[i][0],RMSE.middle_line_array[i][1],RMSE.middle_line_array[i+1][0],RMSE.middle_line_array[i+1][1],X,Y);
-			}
+	calculate_D:function (dX1,dY1) {
+		// var tmp_small = 0;
+		// for(var i = 0 ; i < RMSE.middle_line_array.length; i++)
+		// {	
+		// 	if (i === RMSE.middle_line_array.length-1)
+		// 	{
+		// 		now_value = RMSE.distance(RMSE.middle_line_array[i][0],RMSE.middle_line_array[i][1],RMSE.middle_line_array[0][0],RMSE.middle_line_array[0][1],X,Y);
+		// 	}else{
+		// 		now_value = RMSE.distance(RMSE.middle_line_array[i][0],RMSE.middle_line_array[i][1],RMSE.middle_line_array[i+1][0],RMSE.middle_line_array[i+1][1],X,Y);
+		// 	}
 			
-			if (tmp_small ===0)
-			{
-				tmp_small = now_value;
-			}else if (tmp_small > now_value)
-			{
-				tmp_small = now_value;
-			};
+		// 	if (tmp_small ===0)
+		// 	{
+		// 		tmp_small = now_value;
+		// 	}else if (tmp_small > now_value)
+		// 	{
+		// 		tmp_small = now_value;
+		// 	};
+		// }
+
+		// RMSE.now_distance = RMSE.now_distance + tmp_small;
+
+
+		var tmp_dis = (dX1 - 512)*(dX1 - 512) + (dY1 - 370)*(dY1 - 370);
+
+		if (tmp_dis >320) {
+			RMSE.now_distance = RMSE.now_distance + tmp_dis;
+		}
+		else
+		{
+			RMSE.now_distance = RMSE.now_distance + tmp_dis;
 		}
 
-		RMSE.now_distance = RMSE.now_distance + tmp_small;
 	},
 
 	distance: function  (x1,y1,x2,y2,pointX,pointY) {
@@ -239,3 +273,4 @@ var RMSE = {
 	}
 
 };
+
