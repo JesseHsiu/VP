@@ -1,9 +1,9 @@
 var FG2_ans= [];
+var FG_StarPositionArray = [[220,330],[100,710],[320,500],[400,650],[440,200]];
+var FG_TrianglePositionArray = [[170,230],[160,530],[255,420],[325,630],[360,380]];
 var FG2_choosed_ans = [];
 var FG2_time = new Date();
 var FG2_starttime;
-
-var FG2_myArray = ['1.png','2.png','3.png','4.png','5.png']
 $('#FG2').on("pageshow",function(){
 
 	if (app.now_testname !="FG2")
@@ -19,14 +19,14 @@ $('#FG2').on("pageshow",function(){
 		};
 	}
 	app.addHiddenBack();
-	app.CreateFile("FG");
+	app.CreateFile("FG2");
 
 	FG2_next_Qusetion();
 });
 
 function FG2_next_Qusetion() {
 
-	if (app.now_q==2)
+	if (app.now_q==3)
 	{
 		app.Tests_finished.FG2 = true;
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
@@ -35,9 +35,17 @@ function FG2_next_Qusetion() {
 	}
 	else
 	{
+		if (app.now_q==1)
+		{
+			$('#FG2_Q_img').attr('src', 'img/FG/'+(8+app.now_q)+'/FG'+(8+app.now_q)+'-noStars.png');
+			$('#FG2_1_img').attr('src', "img/FG/"+(8+app.now_q)+"/FG"+(8+app.now_q)+'-Stars.png');//FG9-Stars	
+		}
+		else
+		{
+			$('#FG2_Q_img').attr('src', 'img/FG/'+(8+app.now_q)+'/FG'+(8+app.now_q)+'-noTriangle.png');
+			$('#FG2_1_img').attr('src', "img/FG/"+(8+app.now_q)+"/FG"+(8+app.now_q)+'-Triangle.png');//FG9-Stars		
+		}
 		
-		$('#FG2_Q_img').attr('src', 'img/FG/'+(8+app.now_q)+'/FG'+(8+app.now_q)+'-noStars.png');
-		$('#FG2_1_img').attr('src', "img/FG/"+(8+app.now_q)+"/FG"+(8+app.now_q)+'-Stars.png');//FG9-Stars
 
 		add_Answers(app.now_q);
 
@@ -49,44 +57,94 @@ function FG2_next_Qusetion() {
 
 $("#FG2_Confirm_btn").click(function () {
 
-
-	var is_same = FG2_choosed_ans.length == FG2_ans.length && FG2_choosed_ans.every(function(element, index) {
-		    return element === FG2_ans[index]; 
+	if (app.now_q ==1)
+	{
+		var count = 0;
+		$.each($(".StarsImg") , function (i, l) {
+			if($(this).attr("data-clickstate") === "true")
+			{
+				count ++;
+			}		
 		});
+		var is_same = false;
+		if (count === 5)
+		{
+			is_same = true;
+		}
 
-	FG2_time= new Date();
-	var Time_tmp = FG2_time.getTime() - FG2_starttime;
+		FG2_time= new Date();
+		var Time_tmp = FG2_time.getTime() - FG2_starttime;
 
-	app.thingstowrite = (is_same) +"," + Time_tmp + "," + FG2_choosed_ans+"\n";
-	app.WriteFile();
+		app.thingstowrite = (is_same) +"," + Time_tmp + "," + count+"\n";
+		app.WriteFile();
+
+		$(".StarsImg").remove();
+	}
+	else
+	{
+		var count = 0;
+		$.each($(".TriangleImg") , function (i, l) {
+			if($(this).attr("data-clickstate") === "true")
+			{
+				count ++;
+			}		
+		});
+		var is_same = false;
+		if (count === 5)
+		{
+			is_same = true;
+		}
+
+		FG2_time= new Date();
+		var Time_tmp = FG2_time.getTime() - FG2_starttime;
+
+		app.thingstowrite = (is_same) +"," + Time_tmp + "," + count+"\n";
+		app.WriteFile();
+
+		$(".TriangleImg").remove();
+	}
+
+	
 
 	app.now_q++;
 	FG2_next_Qusetion();
-})
-
-function FG2_check_option () {
-	FG2_choosed_ans.length = 0;
-	$.each($(".FG2_Imgs") , function (i, l) {
-		if($(this).attr("data-clickstate") === "true")
-		{
-			FG2_choosed_ans.push($(this).attr("src").slice(-5,-4));
-		}		
-	});
-	$("#FG2_Confirm_btn").css("display","block");
-}
+});
 function add_Answers (now_q) {
 	if (now_q == 1)
 	{
 		for(var i = 0 ; i <5 ; i++)
 		{
-			$.mobile.activePage.append("<div class='' style='background-image:url(img/FG/9/FG9-Stars.png)' ></div>");
+			$.mobile.activePage.append("<div class='StarsImg' style='background-image:url(img/FG/9/FG9-Stars.png);top:"+FG_StarPositionArray[i][0]+"px;left:"+FG_StarPositionArray[i][1]+"px;' data-clickstate='false' ></div>");
 
 		}
+
+		$(".StarsImg").click(function  () {
+			if ($(this).attr("data-clickstate")==="false")
+			{
+				$(this).attr('data-clickstate', 'true');
+				$(this).fadeTo( "slow", 0.33 );
+			}
+			$("#FG2_Confirm_btn").css("display","block");
+		});
+
 		
 	}
 	else
 	{
+		for(var i = 0 ; i <5 ; i++)
+		{
+			$.mobile.activePage.append("<div class='TriangleImg' style='background-image:url(img/FG/10/FG10-Triangle.png);top:"+FG_TrianglePositionArray[i][0]+"px;left:"+FG_TrianglePositionArray[i][1]+"px;' data-clickstate='false'' ></div>");
 
+		}
+
+		$(".TriangleImg").click(function  () {
+			if ($(this).attr("data-clickstate")==="false")
+			{
+				$(this).attr('data-clickstate', 'true');
+				$(this).fadeTo( "slow", 0.33 );
+			}
+			$("#FG2_Confirm_btn").css("display","block");
+		});
 	}
 
 

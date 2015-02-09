@@ -34,7 +34,7 @@ function FG_next_Qusetion() {
 	{
 		app.Tests_finished.FG = true;
 		// $.mobile.changePage("Section_endPage.html", "slideup");
-		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
+		$.mobile.pageContainer.pagecontainer('change', "FG_2.html", {
 		  transition: 'flow'
 		});
 	}
