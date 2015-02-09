@@ -74,7 +74,7 @@ function VM_check_option (element) {
 	// body...
 	console.log(element.src.slice(-5,-4));
 	VM_time= new Date();
-	var Time_tmp = VM_time.getTime() - VM_starttime-2000;
+	var Time_tmp = VM_time.getTime() - VM_starttime-5000;
 	if (VM_Answer === element.src.slice(-5,-4))
 	{
 
@@ -120,7 +120,7 @@ function VM_onDirectoryReadSuccess(directoryList) {
 			);
 		  }
 		);
-	}, 2000);
+	}, 5000);
 	
 	//Question
 	$('#VM_1_img').attr('src', 'img/VM/'+app.now_q.toString()+'/opt/'+VM_myArray[0]);

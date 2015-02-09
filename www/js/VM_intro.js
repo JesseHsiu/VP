@@ -73,7 +73,7 @@ function onDirectoryReadSuccess(directoryList) {
 			);
 		  }
 		);
-	}, 2000);
+	}, 5000);
 }
 
 // onError Callback if directory does not exists or it is empty

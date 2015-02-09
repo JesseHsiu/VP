@@ -73,15 +73,15 @@ $.fn.drawTouch = function() {
 	var start = function(e) {
         e = e.originalEvent;
 		ctx.beginPath();
-		x = e.changedTouches[0].pageX-$('#Draw_section').height()-44;
-		y = e.changedTouches[0].pageY-$('#Draw_section').width()-44;//-44;
+		x = e.changedTouches[0].pageX-$('#Draw_section').height()-40;
+		y = e.changedTouches[0].pageY-$('#Draw_section').width()-84;//-44;
 		ctx.moveTo(x,y);
 	};
 	var move = function(e) {
 		e.preventDefault();
         e = e.originalEvent;
-		x = e.changedTouches[0].pageX-$('#Draw_section').height()-44;
-		y = e.changedTouches[0].pageY-$('#Draw_section').width()-44;//-44;
+		x = e.changedTouches[0].pageX-$('#Draw_section').height()-40;
+		y = e.changedTouches[0].pageY-$('#Draw_section').width()-84;//-44;
 		ctx.lineTo(x,y);
 		ctx.stroke();
 	};
