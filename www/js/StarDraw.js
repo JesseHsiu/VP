@@ -1,5 +1,5 @@
-var inner_points = [[559.596966,318.488397],[713.623981,318.488397],[589.013508,409.023206],[636.610474,555.511603],[512.000000,464.927466],[387.389527,555.511603],[434.986492,409.023206],[310.376019,318.488397],[464.403034,318.488397],[512.000000,172.000000]];
-var outer_points = [[590.579896,275.844052],[844.869781,275.844052],[639.144942,425.311896],[717.724838,667.155948],[512.000000,517.606665],[306.275162,667.155948],[384.855058,425.311896],[179.130219,275.844052],[433.420104,275.844052],[512.000000,34.000000]];
+var inner_points = [[512.000000,172.000000],[559.596966,318.488397],[713.623981,318.488397],[589.013508,409.023206],[636.610474,555.511603],[512.000000,464.927466],[387.389527,555.511603],[434.986492,409.023206],[310.376019,318.488397],[464.403034,318.488397]];
+var outer_points = [[512.000000,34.000000],[590.579896,275.844052],[844.869781,275.844052],[639.144942,425.311896],[717.724838,667.155948],[512.000000,517.606665],[306.275162,667.155948],[384.855058,425.311896],[179.130219,275.844052],[433.420104,275.844052]];
 
 var nowDrawState = false;
 var SD_time;
@@ -24,6 +24,7 @@ $('#StarDraw').on("pageshow",function(){
 			app.now_q--;
 		};
 	}
+	app.thingstowrite = "";
 	$("#StarDraw_Confirm_btn").hide();
 	SD_next_question();
 });
@@ -70,6 +71,7 @@ $.fn.drawTouch = function(ctx) {
 		//RMSE
 		RMSE.calculate_D(x,y);
 		var tmp_RMSE = Math.sqrt(RMSE.now_distance/RMSE.touch_count);
+		console.log(app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE);
 		app.thingstowrite = app.thingstowrite + app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE+"\n";
 		RMSE.touch_count++;
 
@@ -123,7 +125,6 @@ function SD_next_question () {
 function newCanvas(){
 	var canvas = document.getElementById('Star_Canvas');
     var context = canvas.getContext('2d');
-    app.thingstowrite = "";
 
     canvas.height = window.innerHeight * 0.95;
 	canvas.width = window.innerWidth;
@@ -136,7 +137,7 @@ function newCanvas(){
 	{
 		context.lineTo(outer_points[i][0],outer_points[i][1]);		
 	}
-
+	context.lineTo(outer_points[0][0],outer_points[0][1]);
 	context.lineJoin = 'round';
 	context.stroke();
 
@@ -147,6 +148,7 @@ function newCanvas(){
 	{
 		context.lineTo(inner_points[i][0],inner_points[i][1]);
 	}
+	context.lineTo(inner_points[0][0],inner_points[0][1]);
 	context.lineJoin = 'round';
 	context.stroke();
 
@@ -157,6 +159,7 @@ function newCanvas(){
 
 
 $("#StarDraw_Confirm_btn").click(function  () {
+	console.log("data:"+app.thingstowrite);
 	app.WriteFile();
 	app.now_q++;
 	RMSE.initialize();
@@ -174,7 +177,6 @@ var RMSE = {
 	middle_line_array:null,
 	touch_count: null,
 	initialize:function () {
-		app.thingstowrite = "";
 		RMSE.now_distance = 0;
 		RMSE.touch_count =1;
 		RMSE.middle_line_array=[];

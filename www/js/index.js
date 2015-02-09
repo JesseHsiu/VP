@@ -153,6 +153,7 @@ var app = {
         };
         writer.seek(writer.length);
         writer.write(app.thingstowrite);
+        app.thingstowrite="";
     },
     createVMISuccess: function  (dirEntry) {
         app.current_VMIdirEntry = dirEntry;

@@ -15,6 +15,7 @@ $('#CircleDraw').on("pageshow",function(){
 	{
 		app.now_q=1;
 		app.now_testname="CircleD";
+		
 	}
 	else
 	{
@@ -23,6 +24,7 @@ $('#CircleDraw').on("pageshow",function(){
 			app.now_q--;
 		};
 	}
+	app.thingstowrite = "";
 	$("#CircleDraw_Confirm_btn").hide();
 	CircleD_next_question();
 });
@@ -69,6 +71,8 @@ $.fn.drawTouch = function(ctx) {
 		//RMSE
 		RMSE.calculate_D(x,y);
 		var tmp_RMSE = Math.sqrt(RMSE.now_distance/RMSE.touch_count);
+		//console.log("distance:"+RMSE.now_distance+";Count:"+RMSE.touch_count);
+		console.log(app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE);
 		app.thingstowrite = app.thingstowrite + app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE+"\n";
 		RMSE.touch_count++;
 
@@ -128,6 +132,7 @@ function CircleD_next_question () {
 	}
 	else
 	{
+		// app.thingstowrite = "";
 		newCanvas();
 	}
 }
@@ -135,7 +140,6 @@ function CircleD_next_question () {
 function newCanvas(){
 	var canvas = document.getElementById('Circle_Canvas');
     var context = canvas.getContext('2d');
-    app.thingstowrite = "";
 
     canvas.height = window.innerHeight * 0.95;
 	canvas.width = window.innerWidth;
@@ -179,6 +183,7 @@ function newCanvas(){
 
 
 $("#CircleDraw_Confirm_btn").click(function  () {
+	console.log("data:"+app.thingstowrite);
 	app.WriteFile();
 	app.now_q++;
 	RMSE.initialize();
@@ -196,7 +201,7 @@ var RMSE = {
 	middle_line_array:null,
 	touch_count: null,
 	initialize:function () {
-		app.thingstowrite = "";
+		//app.thingstowrite = "";
 		RMSE.now_distance = 0;
 		RMSE.touch_count =1;
 		// RMSE.middle_line_array=[];
@@ -228,14 +233,14 @@ var RMSE = {
 		// RMSE.now_distance = RMSE.now_distance + tmp_small;
 
 
-		var tmp_dis = (dX1 - 512)*(dX1 - 512) + (dY1 - 370)*(dY1 - 370);
-
-		if (tmp_dis >320) {
-			RMSE.now_distance = RMSE.now_distance + tmp_dis;
+		var tmp_dis = Math.sqrt((dX1 - 512)*(dX1 - 512) + (dY1 - 370)*(dY1 - 370));
+		//console.log(tmp_dis);
+		if (tmp_dis >280) {
+			RMSE.now_distance = RMSE.now_distance + (tmp_dis - 280)*(tmp_dis - 280);
 		}
 		else
 		{
-			RMSE.now_distance = RMSE.now_distance + tmp_dis;
+			RMSE.now_distance = RMSE.now_distance + (280 - tmp_dis)*(280 - tmp_dis);
 		}
 
 	},

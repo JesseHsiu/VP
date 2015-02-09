@@ -1,5 +1,5 @@
 var inner_points = [[512.000000,87.000000],[794.463806,292.221954],[686.572205,624.278076],[337.427765,624.278076],[229.536209,292.221954]];
-var outer_points = [[844.869751,275.844055],[717.724854,667.155945],[306.275146,667.155945],[179.130219,275.844055],[512.000000,34.000000]];
+var outer_points = [[512.000000,34.000000],[844.869751,275.844055],[717.724854,667.155945],[306.275146,667.155945],[179.130219,275.844055]];
 var nowDrawState = false;
 var FD_time;
 var FD_starttime;
@@ -23,6 +23,7 @@ $('#FiveDraw').on("pageshow",function(){
 			app.now_q--;
 		};
 	}
+	app.thingstowrite = "";
 	$("#FiveDraw_Confirm_btn").hide();
 	FD_next_question();
 });
@@ -69,6 +70,7 @@ $.fn.drawTouch = function(ctx) {
 		//RMSE
 		RMSE.calculate_D(x,y);
 		var tmp_RMSE = Math.sqrt(RMSE.now_distance/RMSE.touch_count);
+		console.log(app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE);
 		app.thingstowrite = app.thingstowrite + app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE+"\n";
 		RMSE.touch_count++;
 
@@ -122,7 +124,6 @@ function FD_next_question () {
 function newCanvas(){
 	var canvas = document.getElementById('Five_Canvas');
     var context = canvas.getContext('2d');
-    app.thingstowrite = "";
 
     canvas.height = window.innerHeight * 0.95;
 	canvas.width = window.innerWidth;
@@ -135,19 +136,21 @@ function newCanvas(){
 	{
 		context.lineTo(outer_points[i][0],outer_points[i][1]);		
 	}
-
+	context.lineTo(outer_points[0][0],outer_points[0][1]);
 	context.lineJoin = 'round';
 	context.stroke();
 
 
 	context.beginPath();
-	context.moveTo(229.536209,292.221954);
+	context.moveTo(512.000000,87.000000);
 	for(var i = 0 ; i < inner_points.length; i ++)
 	{
 		context.lineTo(inner_points[i][0],inner_points[i][1]);
 	}
+	context.lineTo(inner_points[0][0],inner_points[0][1]);
 	context.lineJoin = 'round';
 	context.stroke();
+
 
 	$("#Five_Canvas").drawTouch(context);
 	context.strokeStyle = "#000";
@@ -173,7 +176,6 @@ var RMSE = {
 	middle_line_array:null,
 	touch_count: null,
 	initialize:function () {
-		app.thingstowrite = "";
 		RMSE.now_distance = 0;
 		RMSE.touch_count =1;
 		RMSE.middle_line_array=[];
