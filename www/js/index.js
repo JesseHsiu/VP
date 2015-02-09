@@ -152,7 +152,8 @@ var app = {
             console.log('finished writing');
         };
         writer.seek(writer.length);
-        writer.write(app.thingstowrite);
+        var tmp = app.thingstowrite;
+        writer.write(tmp);
         app.thingstowrite="";
     },
     createVMISuccess: function  (dirEntry) {

@@ -70,7 +70,7 @@ $.fn.drawTouch = function(ctx) {
 		//RMSE
 		RMSE.calculate_D(x,y);
 		var tmp_RMSE = Math.sqrt(RMSE.now_distance/RMSE.touch_count);
-		console.log(app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE);
+		//console.log(app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE);
 		app.thingstowrite = app.thingstowrite + app.now_q+","+ Time_tmp + ","+x+","+y+","+error_times+","+tmp_RMSE+"\n";
 		RMSE.touch_count++;
 
