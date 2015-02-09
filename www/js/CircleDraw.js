@@ -92,7 +92,7 @@ function inTheSection(dX1,dY1)
 	//distance
 	var tmp_distance = Math.sqrt((dX1 - 512)*(dX1 - 512) + (dY1 - 370)*(dY1 - 370));
 
-	if (tmp_distance >340 || tmp_distance<300) {
+	if (tmp_distance >300 || tmp_distance<260) {
 		return false;
 	}
 	else
@@ -164,11 +164,11 @@ function newCanvas(){
 
 
 	context.beginPath();
-	context.arc(512,370,300,0,2*Math.PI);
+	context.arc(512,370,260,0,2*Math.PI);
 	context.stroke();
 
 	context.beginPath();
-	context.arc(512,370,340,0,2*Math.PI);
+	context.arc(512,370,300,0,2*Math.PI);
 	context.stroke();
 
 
@@ -196,6 +196,7 @@ var RMSE = {
 	middle_line_array:null,
 	touch_count: null,
 	initialize:function () {
+		app.thingstowrite = "";
 		RMSE.now_distance = 0;
 		RMSE.touch_count =1;
 		// RMSE.middle_line_array=[];

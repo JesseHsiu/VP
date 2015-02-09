@@ -52,7 +52,7 @@ function SR_Intro_onDirectoryReadSuccess(directoryList) {
     
     $(".SRAns_intro_button" ).click(function() {
 		//console.log("clicked");
-		if($(this).css('background-color') == "rgb(0, 0, 0)")
+		if($(this).css('background-color') === "rgb(111, 107, 107)")
 		{
 			var tmp_id = $(this).attr('id').toString();
 			chooseArray = $.grep(chooseArray, function(n ,i) {
@@ -62,7 +62,7 @@ function SR_Intro_onDirectoryReadSuccess(directoryList) {
 		}
 		else
 		{
-			$(this).css('background-color', 'black');
+			$(this).css('background-color', 'rgb(111,107,107)');
 			chooseArray.push($(this).attr('id').toString());
 		}
 		chooseArray = chooseArray.sort();

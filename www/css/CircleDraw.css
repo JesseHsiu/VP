@@ -22,7 +22,7 @@
 	pointer-events: none;
     width:3%;
     left: 495px;
-    top: 35px;
+    top: 75px;
 }
 .circle-text:after {
     content: "";

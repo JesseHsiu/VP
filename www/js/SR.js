@@ -50,7 +50,7 @@ $('#SR').on("pagebeforeshow",function(event, ui){
     $(".SRAns_button" ).click(function() {
 		//console.log("clicked");
 		$("#NextQ").show();
-		if($(this).css('background-color') == "rgb(0, 0, 0)")
+		if($(this).css('background-color') === "rgb(111, 107, 107)")
 		{
 			var tmp_id = $(this).attr('id').toString();
 			chooseArray = $.grep(chooseArray, function(n ,i) {
@@ -60,7 +60,7 @@ $('#SR').on("pagebeforeshow",function(event, ui){
 		}
 		else
 		{
-			$(this).css('background-color', 'black');
+			$(this).css('background-color', 'rgb(111,107,107)');
 			chooseArray.push($(this).attr('id').toString());
 		}
 		chooseArray = chooseArray.sort();

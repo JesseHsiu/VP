@@ -175,6 +175,7 @@ var RMSE = {
 	middle_line_array:null,
 	touch_count: null,
 	initialize:function () {
+		app.thingstowrite = "";
 		RMSE.now_distance = 0;
 		RMSE.touch_count =1;
 		RMSE.middle_line_array=[];

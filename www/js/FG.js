@@ -54,7 +54,7 @@ function FG_next_Qusetion() {
 
 
 		FG_starttime = FG_time.getTime();
-		$("#FG_Confirm_btn").css('display','none');
+		$("#FC_Next").css('display','none');
 		// window.plugins.directoryList.getList("www/img/FG/"+app.now_q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
 		// window.plugins.directoryList.getList("www/img/FG/"+app.now_q+"/que",FG_onDirectoryReadSuccess,FG_onDirectoryReadError);
 		window.plugins.directoryList.getList("www/img/FG/"+app.now_q+"/ans",FG_ans_onDirectoryReadSuccess,FG_ans_onDirectoryReadError);
@@ -183,7 +183,7 @@ function FG_check_option () {
 			FG_choosed_ans.push($(this).attr("src").slice(-5,-4));
 		}		
 	});
-	$("#FG_Confirm_btn").css("display","block");
+	$("#FC_Next").css("display","block");
 // 	FG_choosed_ans = FG_choosed_ans.sort();
 
 // 	var is_same = FG_choosed_ans.length == FG_ans.length && FG_choosed_ans.every(function(element, index) {
