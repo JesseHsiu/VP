@@ -8,6 +8,8 @@ $("#FC_Confirm_btn").css('display','none');
 $('#FC').on("pageshow",function(){
 	if (app.now_testname !="FC")
 	{
+		app.VP_list.FC.score=0;
+		app.VP_list.FC.time=0;
 		app.now_q=1;
 		app.now_testname="FC";
 	}
@@ -30,6 +32,7 @@ function FC_next_Qusetion() {
 
 	if (app.now_q==16)
 	{
+		app.VP_list.FC.time = app.VP_list.FC.time/(app.now_q-1);
 		app.Tests_finished.FC = true;
 		// $.mobile.changePage("Section_endPage.html", "slideup");
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
@@ -74,6 +77,16 @@ function FC_check_option (element) {
 	var Time_tmp = FC_time.getTime() - FC_starttime;
 
 	app.thingstowrite = (FC_Answer === element.src.slice(-5,-4)) +"," + Time_tmp + "," + element.src.slice(-5,-4)+"\n";
+
+
+	if ((FC_Answer === element.src.slice(-5,-4)))
+	{
+		app.VP_list.FC.score++;
+
+	}
+	app.VP_list.FC.time = app.VP_list.FC.time + Time_tmp;
+
+
 	app.WriteFile();
 	app.now_q++;
 	FC_next_Qusetion();

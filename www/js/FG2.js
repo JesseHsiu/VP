@@ -8,6 +8,8 @@ $('#FG2').on("pageshow",function(){
 
 	if (app.now_testname !="FG2")
 	{
+		app.VP_list.FG2.score=0;
+		app.VP_list.FG2.time=0;
 		app.now_q=1;
 		app.now_testname="FG2";
 	}
@@ -28,6 +30,7 @@ function FG2_next_Qusetion() {
 
 	if (app.now_q==3)
 	{
+		app.VP_list.FG2.time = app.VP_list.FG2.time/(app.now_q-1);
 		app.Tests_finished.FG2 = true;
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'
@@ -76,6 +79,16 @@ $("#FG2_Confirm_btn").click(function () {
 		var Time_tmp = FG2_time.getTime() - FG2_starttime;
 
 		app.thingstowrite = (is_same) +"," + Time_tmp + "," + count+"\n";
+
+
+		if (is_same)
+		{
+			app.VP_list.FG2.score++;
+
+		}
+		app.VP_list.FG2.time = app.VP_list.FG2.time + Time_tmp;
+
+
 		app.WriteFile();
 
 		$(".StarsImg").remove();

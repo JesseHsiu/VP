@@ -8,6 +8,8 @@ $('#VM_Option').css('display','none');
 $('#VM').on("pageshow",function(){
 	if (app.now_testname !="VM")
 	{
+		app.VP_list.VM.score=0;
+		app.VP_list.VM.time=0;
 		app.now_q=1;
 		app.now_testname="VM";
 	}
@@ -36,6 +38,7 @@ function VM_next_Qusetion() {
 
 	if (app.now_q==16)
 	{
+		app.VP_list.VM.time = app.VP_list.VM.time/(app.now_q-1);
 		app.Tests_finished.VM = true;
 		// $.mobile.changePage("Section_endPage.html", "slideup");
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
@@ -88,6 +91,15 @@ function VM_check_option (element) {
 		console.log("time: "+ Time_tmp);
 	}
 	app.thingstowrite = (VM_Answer === element.src.slice(-5,-4)) +"," + Time_tmp + "," + element.src.slice(-5,-4)+"\n";
+
+
+	if ((VM_Answer === element.src.slice(-5,-4)))
+	{
+		app.VP_list.VM.score++;
+
+	}
+	app.VP_list.VM.time = app.VP_list.VM.time + Time_tmp;
+
 	app.WriteFile();
 
 	VM_next_Qusetion();

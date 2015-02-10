@@ -5,6 +5,9 @@ var SR_time = new Date();
 var SR_starttime;
 
 $('#SR').on("pagebeforeshow",function(event, ui){
+
+	
+
 	if (app.current_userinfo.right_left_hand == "right")
     {
         $("#SR_lefthand").append("<img id='SR_Q_img'>");
@@ -18,6 +21,8 @@ $('#SR').on("pagebeforeshow",function(event, ui){
 
 	if (app.now_testname !="SR")
 	{
+		app.VP_list.SR.score=0;
+		app.VP_list.SR.time=0;
 		app.now_q=1;
 		app.now_testname="SR";
 	}
@@ -81,6 +86,7 @@ function SR_NextQuestion () {
 	// console.log(app.now_q);
 	if(app.now_q==15)
 	{
+		app.VP_list.SR.time = app.VP_list.SR.time/(app.now_q-1);
 		app.Tests_finished.SR = true;
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'
@@ -138,6 +144,17 @@ $("#NextQ").click(function () {
 	SR_time= new Date();
 	var Time_tmp = SR_time.getTime() - SR_starttime;
 	app.thingstowrite = is_same +"," + Time_tmp + "," + chooseArray+"\n";
+
+
+	if (is_same)
+	{
+		app.VP_list.SR.score++;
+
+	}
+	app.VP_list.SR.time = app.VP_list.SR.time + Time_tmp;
+
+
+
 	app.WriteFile();
 
 	SR_NextQuestion();

@@ -51,7 +51,15 @@
                 if (flag)
                 {
                     app.Tests_finished.VP = true;
-                };
+                    app.thingstowrite = app.current_userinfo.id+","+app.VP_list.VD.score+","+app.VP_list.VD.time+","+app.VP_list.VM.score+","+app.VP_list.VM.time+","+app.VP_list.SR.score+","+app.VP_list.SR.time+","+app.VP_list.FC.score+","+app.VP_list.FC.time+","+app.VP_list.FG.score+","+app.VP_list.FG.time+","+app.VP_list.FG2.score+","+app.VP_list.FG2.score+","+app.VP_list.VC.score+","+app.VP_list.VC.time+"\n";
+                    console.log(app.thingstowrite);
+                    app.VP_list_Writer.createWriter(app.VP_ALLWriter, app.onFSError);
+                    //console.log(app.VP_list);
+                }
+                else
+                {
+                    //console.log(app.VP_list);
+                }
             });
         </script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />

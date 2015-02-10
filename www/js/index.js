@@ -66,6 +66,37 @@ var app = {
     now_q: null,
     now_testname: null,
     Tests_finished: null,
+    VP_list: {
+        VD:{
+            score:0,
+            time:0
+        },
+        VM:{
+            score:0,
+            time:0
+        },
+        SR:{
+            score:0,
+            time:0
+        },
+        FC:{
+            score:0,
+            time:0
+        },
+        FG:{
+            score:0,
+            time:0
+        },
+        VC:{
+            score:0,
+            time:0
+        },
+        FG2:{
+            score:0,
+            time:0
+        }
+    },
+    VP_list_Writer:null,
     // fileName : "",
     // Application Constructor
     initialize: function() {
@@ -110,7 +141,24 @@ var app = {
     createUser: function (UserInfo) {
         app.current_userinfo = UserInfo;
         app.fs.root.getDirectory(UserInfo.id, {create: true, exclusive: false}, app.createUserSuccess, app.createUserFail);
+
+        app.fs.root.getFile("VP_ALL.csv", {create: true, exclusive: false}, app.createVP_ALLSuccess, app.VP_ALLFail);
         //fileSystem.root.getFile
+    },
+    createVP_ALLSuccess: function (fileEntry) {
+        app.VP_list_Writer = fileEntry;
+    },
+    VP_ALLWriter:function (writer) {
+        writer.onwriteend = function(evt) {
+            console.log('finished writing');
+        };
+        writer.seek(writer.length);
+        var tmp = app.thingstowrite;
+        app.thingstowrite = "";
+        writer.write(tmp);
+    },
+    VP_ALLFail: function  (error) {
+        console.log("VP_ALLFail");
     },
     createUserSuccess: function (dirEntry) {
         // body...

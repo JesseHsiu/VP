@@ -8,6 +8,9 @@ $('#VP_1').on("pageshow",function(){
 
 	if (app.now_testname !="VD")
 	{
+		app.VP_list.VD.score=0;
+		app.VP_list.VD.time=0;
+
 		app.now_q=1;
 		app.now_testname="VD";
 	}
@@ -28,6 +31,7 @@ var myArray = ['1.png','2.png','3.png','4.png','5.png']
 function VD_next_Qusetion() {
 	if (app.now_q==16)
 	{
+		app.VP_list.VD.time = app.VP_list.VD.time/(app.now_q-1);
 		app.Tests_finished.VD = true;
 		$.mobile.pageContainer.pagecontainer('change', "Section_endPage.html", {
 		  transition: 'flow'
@@ -74,6 +78,14 @@ function VP_check_option (element) {
 	VD_time= new Date();
 	var Time_tmp = VD_time.getTime() - VD_starttime
 	app.thingstowrite = (VD_Answer === element.src.slice(-5,-4)) +"," + Time_tmp + "," + element.src.slice(-5,-4)+"\n";
+	
+	if ((VD_Answer === element.src.slice(-5,-4)))
+	{
+		app.VP_list.VD.score++;
+
+	}
+	app.VP_list.VD.time = app.VP_list.VD.time + Time_tmp;
+
 	app.WriteFile();
 	VD_next_Qusetion();
 }

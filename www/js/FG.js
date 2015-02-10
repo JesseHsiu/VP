@@ -8,6 +8,8 @@ $('#FG').on("pageshow",function(){
 
 	if (app.now_testname !="FG")
 	{
+		app.VP_list.FG.score=0;
+		app.VP_list.FG.time=0;
 		app.now_q=1;
 		app.now_testname="FG";
 	}
@@ -32,6 +34,7 @@ function FG_next_Qusetion() {
 
 	if (app.now_q==9)
 	{
+		app.VP_list.FG.time = app.VP_list.FG.time/(app.now_q-1);
 		app.Tests_finished.FG = true;
 		// $.mobile.changePage("Section_endPage.html", "slideup");
 		$.mobile.pageContainer.pagecontainer('change', "FG_2.html", {
@@ -81,8 +84,16 @@ $("#FG_Confirm_btn").click(function () {
 
 	FG_time= new Date();
 	var Time_tmp = FG_time.getTime() - FG_starttime;
-
 	app.thingstowrite = (is_same) +"," + Time_tmp + "," + FG_choosed_ans+"\n";
+
+
+	if (is_same)
+	{
+		app.VP_list.FG.score++;
+
+	}
+	app.VP_list.FG.time = app.VP_list.FG.time + Time_tmp;
+
 	app.WriteFile();
 
 	FG_next_Qusetion();
